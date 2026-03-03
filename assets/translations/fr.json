@@ -1,0 +1,64 @@
+{
+  "general": {
+    "appName": "Modèle de démarrage Flutter",
+    "loading": "Chargement...",
+    "retry": "Réessayer"
+  },
+  "error": {
+    "title": "Une erreur est survenue"
+  },
+  "update": {
+    "required": "Mise à jour requise",
+    "message": "Veuillez mettre à jour vers la dernière version pour continuer à utiliser l'application.",
+    "button": "Mettre à jour"
+  },
+  "home": {
+    "title": "Accueil",
+    "settings": "Paramètres"
+  },
+  "settings": {
+    "title": "Paramètres",
+    "appearance": "Apparence",
+    "theme": "Thème",
+    "chooseTheme": "Choisir le thème",
+    "themeMode": "Mode du thème",
+    "themeModeSystem": "Système",
+    "themeModeLight": "Clair",
+    "themeModeDark": "Sombre",
+    "appTheme": "Thème de l'application",
+    "backgroundAnimation": "Animation d'arrière-plan",
+    "language": "Langue",
+    "support": "Support",
+    "contactUs": "Nous contacter",
+    "rateApp": "Noter l'application",
+    "shareApp": "Partager l'application",
+    "aboutTitle": "À propos",
+    "about": "À propos",
+    "legalAndPolicies": "Mentions légales et Politiques",
+    "privacyPolicy": "Politique de confidentialité",
+    "termsOfService": "Conditions d'utilisation",
+    "kvkkClarification": "Texte de clarification KVKK",
+    "consentDeclaration": "Déclaration de consentement",
+    "acceptableUsePolicy": "Politique d'utilisation acceptable",
+    "refundPolicy": "Politique de remboursement",
+    "copyrightNotice": "Avis de droit d'auteur",
+    "version": "Version"
+  },
+  "onboarding": {
+    "step1Title": "Étape 1",
+    "step1Desc": "Ajoutez votre contenu ici",
+    "step2Title": "Bienvenue !",
+    "step2Desc": "Nous sommes ravis de vous accueillir. Cette application est conçue pour rendre votre expérience simple et agréable. Configurons tout en quelques étapes.",
+    "step3Title": "Choisissez votre thème",
+    "step3Desc": "Choisissez une couleur et un mode qui correspondent à votre style.",
+    "step4Title": "Étape 4",
+    "step4Desc": "Ajoutez votre contenu ici",
+    "step5Title": "Étape 5",
+    "step5Desc": "Ajoutez votre contenu ici"
+  },
+  "language": {
+    "chooseYourLanguage": "Choisissez votre langue",
+    "selectPreferredLanguage": "Sélectionnez votre langue préférée",
+    "continueButton": "Continuer"
+  }
+}

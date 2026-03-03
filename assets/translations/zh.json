@@ -1,0 +1,64 @@
+{
+  "general": {
+    "appName": "Flutter 入门模板",
+    "loading": "加载中...",
+    "retry": "重试"
+  },
+  "error": {
+    "title": "发生错误"
+  },
+  "update": {
+    "required": "需要更新",
+    "message": "请更新到最新版本以继续使用该应用。",
+    "button": "更新"
+  },
+  "home": {
+    "title": "首页",
+    "settings": "设置"
+  },
+  "settings": {
+    "title": "设置",
+    "appearance": "外观",
+    "theme": "主题",
+    "chooseTheme": "选择主题",
+    "themeMode": "主题模式",
+    "themeModeSystem": "系统",
+    "themeModeLight": "浅色",
+    "themeModeDark": "深色",
+    "appTheme": "应用主题",
+    "backgroundAnimation": "背景动画",
+    "language": "语言",
+    "support": "支持",
+    "contactUs": "联系我们",
+    "rateApp": "评价应用",
+    "shareApp": "分享应用",
+    "aboutTitle": "关于",
+    "about": "关于",
+    "legalAndPolicies": "法律与政策",
+    "privacyPolicy": "隐私政策",
+    "termsOfService": "服务条款",
+    "kvkkClarification": "KVKK说明文本",
+    "consentDeclaration": "同意声明",
+    "acceptableUsePolicy": "可接受使用政策",
+    "refundPolicy": "退款政策",
+    "copyrightNotice": "版权声明",
+    "version": "版本"
+  },
+  "onboarding": {
+    "step1Title": "第 1 步",
+    "step1Desc": "在此添加您的内容",
+    "step2Title": "欢迎！",
+    "step2Desc": "很高兴您的到来。此应用旨在为您提供简单愉快的体验。让我们通过几个步骤完成设置。",
+    "step3Title": "选择您的主题",
+    "step3Desc": "选择适合您风格的颜色和模式。",
+    "step4Title": "第 4 步",
+    "step4Desc": "在此添加您的内容",
+    "step5Title": "第 5 步",
+    "step5Desc": "在此添加您的内容"
+  },
+  "language": {
+    "chooseYourLanguage": "选择您的语言",
+    "selectPreferredLanguage": "选择您的首选语言",
+    "continueButton": "继续"
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "general": {
+    "appName": "Стартовый шаблон Flutter",
+    "loading": "Загрузка...",
+    "retry": "Повторить"
+  },
+  "error": {
+    "title": "Произошла ошибка"
+  },
+  "update": {
+    "required": "Требуется обновление",
+    "message": "Пожалуйста, обновите приложение до последней версии, чтобы продолжить его использование.",
+    "button": "Обновить"
+  },
+  "home": {
+    "title": "Главная",
+    "settings": "Настройки"
+  },
+  "settings": {
+    "title": "Настройки",
+    "appearance": "Внешний вид",
+    "theme": "Тема",
+    "chooseTheme": "Выбрать тему",
+    "themeMode": "Режим темы",
+    "themeModeSystem": "Системный",
+    "themeModeLight": "Светлый",
+    "themeModeDark": "Тёмный",
+    "appTheme": "Тема приложения",
+    "backgroundAnimation": "Фоновая анимация",
+    "language": "Язык",
+    "support": "Поддержка",
+    "contactUs": "Связаться с нами",
+    "rateApp": "Оценить приложение",
+    "shareApp": "Поделиться приложением",
+    "aboutTitle": "О приложении",
+    "about": "О приложении",
+    "legalAndPolicies": "Правовая информация и Политики",
+    "privacyPolicy": "Политика конфиденциальности",
+    "termsOfService": "Условия использования",
+    "kvkkClarification": "Пояснительный текст KVKK",
+    "consentDeclaration": "Декларация согласия",
+    "acceptableUsePolicy": "Политика допустимого использования",
+    "refundPolicy": "Политика возврата",
+    "copyrightNotice": "Уведомление об авторских правах",
+    "version": "Версия"
+  },
+  "onboarding": {
+    "step1Title": "Шаг 1",
+    "step1Desc": "Добавьте свой контент здесь",
+    "step2Title": "Добро пожаловать!",
+    "step2Desc": "Мы рады, что вы здесь. Это приложение создано, чтобы сделать ваш опыт простым и приятным. Давайте настроим всё за несколько шагов.",
+    "step3Title": "Выберите тему",
+    "step3Desc": "Выберите цвет и режим, которые подходят вашему стилю.",
+    "step4Title": "Шаг 4",
+    "step4Desc": "Добавьте свой контент здесь",
+    "step5Title": "Шаг 5",
+    "step5Desc": "Добавьте свой контент здесь"
+  },
+  "language": {
+    "chooseYourLanguage": "Выберите ваш язык",
+    "selectPreferredLanguage": "Выберите предпочтительный язык",
+    "continueButton": "Продолжить"
+  }
+}

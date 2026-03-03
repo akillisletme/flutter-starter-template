@@ -1,0 +1,64 @@
+{
+  "general": {
+    "appName": "Modelo Inicial Flutter",
+    "loading": "Carregando...",
+    "retry": "Tentar novamente"
+  },
+  "error": {
+    "title": "Ocorreu um erro"
+  },
+  "update": {
+    "required": "Atualização necessária",
+    "message": "Atualize para a versão mais recente para continuar usando o aplicativo.",
+    "button": "Atualizar"
+  },
+  "home": {
+    "title": "Início",
+    "settings": "Configurações"
+  },
+  "settings": {
+    "title": "Configurações",
+    "appearance": "Aparência",
+    "theme": "Tema",
+    "chooseTheme": "Escolher tema",
+    "themeMode": "Modo do tema",
+    "themeModeSystem": "Sistema",
+    "themeModeLight": "Claro",
+    "themeModeDark": "Escuro",
+    "appTheme": "Tema do aplicativo",
+    "backgroundAnimation": "Animação de fundo",
+    "language": "Idioma",
+    "support": "Suporte",
+    "contactUs": "Fale conosco",
+    "rateApp": "Avaliar o aplicativo",
+    "shareApp": "Compartilhar aplicativo",
+    "aboutTitle": "Sobre",
+    "about": "Sobre",
+    "legalAndPolicies": "Jurídico e Políticas",
+    "privacyPolicy": "Política de privacidade",
+    "termsOfService": "Termos de serviço",
+    "kvkkClarification": "Texto de esclarecimento KVKK",
+    "consentDeclaration": "Declaração de consentimento",
+    "acceptableUsePolicy": "Política de uso aceitável",
+    "refundPolicy": "Política de reembolso",
+    "copyrightNotice": "Aviso de direitos autorais",
+    "version": "Versão"
+  },
+  "onboarding": {
+    "step1Title": "Passo 1",
+    "step1Desc": "Adicione seu conteúdo aqui",
+    "step2Title": "Bem-vindo!",
+    "step2Desc": "Estamos felizes por você estar aqui. Este aplicativo foi projetado para tornar sua experiência simples e agradável. Vamos configurá-lo em poucos passos.",
+    "step3Title": "Escolha seu tema",
+    "step3Desc": "Escolha uma cor e modo que combinem com seu estilo.",
+    "step4Title": "Passo 4",
+    "step4Desc": "Adicione seu conteúdo aqui",
+    "step5Title": "Passo 5",
+    "step5Desc": "Adicione seu conteúdo aqui"
+  },
+  "language": {
+    "chooseYourLanguage": "Escolha seu idioma",
+    "selectPreferredLanguage": "Selecione seu idioma preferido",
+    "continueButton": "Continuar"
+  }
+}

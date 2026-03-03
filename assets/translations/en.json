@@ -31,6 +31,7 @@
     "support": "Support",
     "contactUs": "Contact Us",
     "rateApp": "Rate App",
+    "shareApp": "Share App",
     "aboutTitle": "About",
     "about": "About",
     "legalAndPolicies": "Legal & Policies",
@@ -46,13 +47,18 @@
   "onboarding": {
     "step1Title": "Step 1",
     "step1Desc": "Add your content here",
-    "step2Title": "Step 2",
-    "step2Desc": "Add your content here",
-    "step3Title": "Step 3",
-    "step3Desc": "Add your content here",
+    "step2Title": "Welcome!",
+    "step2Desc": "We're glad you're here. This app is designed to make your experience simple and enjoyable. Let's get you set up in just a few steps.",
+    "step3Title": "Choose Your Theme",
+    "step3Desc": "Pick a color and mode that suits your style.",
     "step4Title": "Step 4",
     "step4Desc": "Add your content here",
     "step5Title": "Step 5",
     "step5Desc": "Add your content here"
+  },
+  "language": {
+    "chooseYourLanguage": "Choose Your Language",
+    "selectPreferredLanguage": "Select your preferred language",
+    "continueButton": "Continue"
   }
 }

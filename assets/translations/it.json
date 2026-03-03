@@ -1,0 +1,64 @@
+{
+  "general": {
+    "appName": "Modello Starter Flutter",
+    "loading": "Caricamento...",
+    "retry": "Riprova"
+  },
+  "error": {
+    "title": "Si è verificato un errore"
+  },
+  "update": {
+    "required": "Aggiornamento richiesto",
+    "message": "Aggiorna all'ultima versione per continuare a utilizzare l'app.",
+    "button": "Aggiorna"
+  },
+  "home": {
+    "title": "Home",
+    "settings": "Impostazioni"
+  },
+  "settings": {
+    "title": "Impostazioni",
+    "appearance": "Aspetto",
+    "theme": "Tema",
+    "chooseTheme": "Scegli il tema",
+    "themeMode": "Modalità tema",
+    "themeModeSystem": "Sistema",
+    "themeModeLight": "Chiaro",
+    "themeModeDark": "Scuro",
+    "appTheme": "Tema dell'app",
+    "backgroundAnimation": "Animazione di sfondo",
+    "language": "Lingua",
+    "support": "Supporto",
+    "contactUs": "Contattaci",
+    "rateApp": "Valuta l'app",
+    "shareApp": "Condividi l'app",
+    "aboutTitle": "Informazioni",
+    "about": "Informazioni",
+    "legalAndPolicies": "Legale e Politiche",
+    "privacyPolicy": "Informativa sulla privacy",
+    "termsOfService": "Termini di servizio",
+    "kvkkClarification": "Testo di chiarimento KVKK",
+    "consentDeclaration": "Dichiarazione di consenso",
+    "acceptableUsePolicy": "Politica di utilizzo accettabile",
+    "refundPolicy": "Politica di rimborso",
+    "copyrightNotice": "Avviso di copyright",
+    "version": "Versione"
+  },
+  "onboarding": {
+    "step1Title": "Passo 1",
+    "step1Desc": "Aggiungi il tuo contenuto qui",
+    "step2Title": "Benvenuto!",
+    "step2Desc": "Siamo felici che tu sia qui. Questa app è progettata per rendere la tua esperienza semplice e piacevole. Ti configuriamo in pochi passaggi.",
+    "step3Title": "Scegli il tuo tema",
+    "step3Desc": "Scegli un colore e una modalità adatti al tuo stile.",
+    "step4Title": "Passo 4",
+    "step4Desc": "Aggiungi il tuo contenuto qui",
+    "step5Title": "Passo 5",
+    "step5Desc": "Aggiungi il tuo contenuto qui"
+  },
+  "language": {
+    "chooseYourLanguage": "Scegli la tua lingua",
+    "selectPreferredLanguage": "Seleziona la tua lingua preferita",
+    "continueButton": "Continua"
+  }
+}

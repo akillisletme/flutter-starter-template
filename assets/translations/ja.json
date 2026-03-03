@@ -1,0 +1,64 @@
+{
+  "general": {
+    "appName": "Flutterスターターテンプレート",
+    "loading": "読み込み中...",
+    "retry": "再試行"
+  },
+  "error": {
+    "title": "エラーが発生しました"
+  },
+  "update": {
+    "required": "アップデートが必要です",
+    "message": "アプリを引き続きご利用いただくために、最新バージョンにアップデートしてください。",
+    "button": "アップデート"
+  },
+  "home": {
+    "title": "ホーム",
+    "settings": "設定"
+  },
+  "settings": {
+    "title": "設定",
+    "appearance": "外観",
+    "theme": "テーマ",
+    "chooseTheme": "テーマを選択",
+    "themeMode": "テーマモード",
+    "themeModeSystem": "システム",
+    "themeModeLight": "ライト",
+    "themeModeDark": "ダーク",
+    "appTheme": "アプリテーマ",
+    "backgroundAnimation": "背景アニメーション",
+    "language": "言語",
+    "support": "サポート",
+    "contactUs": "お問い合わせ",
+    "rateApp": "アプリを評価",
+    "shareApp": "アプリを共有",
+    "aboutTitle": "情報",
+    "about": "情報",
+    "legalAndPolicies": "法的事項とポリシー",
+    "privacyPolicy": "プライバシーポリシー",
+    "termsOfService": "利用規約",
+    "kvkkClarification": "KVKK説明テキスト",
+    "consentDeclaration": "同意宣言",
+    "acceptableUsePolicy": "利用規定",
+    "refundPolicy": "返金ポリシー",
+    "copyrightNotice": "著作権表示",
+    "version": "バージョン"
+  },
+  "onboarding": {
+    "step1Title": "ステップ 1",
+    "step1Desc": "ここにコンテンツを追加してください",
+    "step2Title": "ようこそ！",
+    "step2Desc": "ご利用いただきありがとうございます。このアプリはシンプルで楽しい体験を提供するために設計されています。いくつかのステップで設定を完了しましょう。",
+    "step3Title": "テーマを選択",
+    "step3Desc": "お好みの色とモードを選んでください。",
+    "step4Title": "ステップ 4",
+    "step4Desc": "ここにコンテンツを追加してください",
+    "step5Title": "ステップ 5",
+    "step5Desc": "ここにコンテンツを追加してください"
+  },
+  "language": {
+    "chooseYourLanguage": "言語を選択してください",
+    "selectPreferredLanguage": "お好みの言語を選択してください",
+    "continueButton": "続ける"
+  }
+}

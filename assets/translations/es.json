@@ -1,0 +1,64 @@
+{
+  "general": {
+    "appName": "Plantilla de Inicio Flutter",
+    "loading": "Cargando...",
+    "retry": "Reintentar"
+  },
+  "error": {
+    "title": "Se produjo un error"
+  },
+  "update": {
+    "required": "Actualización requerida",
+    "message": "Por favor, actualice a la última versión para seguir usando la aplicación.",
+    "button": "Actualizar"
+  },
+  "home": {
+    "title": "Inicio",
+    "settings": "Configuración"
+  },
+  "settings": {
+    "title": "Configuración",
+    "appearance": "Apariencia",
+    "theme": "Tema",
+    "chooseTheme": "Elegir tema",
+    "themeMode": "Modo de tema",
+    "themeModeSystem": "Sistema",
+    "themeModeLight": "Claro",
+    "themeModeDark": "Oscuro",
+    "appTheme": "Tema de la aplicación",
+    "backgroundAnimation": "Animación de fondo",
+    "language": "Idioma",
+    "support": "Soporte",
+    "contactUs": "Contáctenos",
+    "rateApp": "Calificar la aplicación",
+    "shareApp": "Compartir aplicación",
+    "aboutTitle": "Acerca de",
+    "about": "Acerca de",
+    "legalAndPolicies": "Legal y Políticas",
+    "privacyPolicy": "Política de privacidad",
+    "termsOfService": "Términos de servicio",
+    "kvkkClarification": "Texto de aclaración KVKK",
+    "consentDeclaration": "Declaración de consentimiento",
+    "acceptableUsePolicy": "Política de uso aceptable",
+    "refundPolicy": "Política de reembolso",
+    "copyrightNotice": "Aviso de derechos de autor",
+    "version": "Versión"
+  },
+  "onboarding": {
+    "step1Title": "Paso 1",
+    "step1Desc": "Agregue su contenido aquí",
+    "step2Title": "¡Bienvenido!",
+    "step2Desc": "Nos alegra que estés aquí. Esta aplicación está diseñada para hacer tu experiencia simple y agradable. Vamos a configurarte en unos pocos pasos.",
+    "step3Title": "Elige tu tema",
+    "step3Desc": "Elige un color y modo que se adapte a tu estilo.",
+    "step4Title": "Paso 4",
+    "step4Desc": "Agregue su contenido aquí",
+    "step5Title": "Paso 5",
+    "step5Desc": "Agregue su contenido aquí"
+  },
+  "language": {
+    "chooseYourLanguage": "Elige tu idioma",
+    "selectPreferredLanguage": "Selecciona tu idioma preferido",
+    "continueButton": "Continuar"
+  }
+}

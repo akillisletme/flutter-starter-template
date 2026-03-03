@@ -1,0 +1,64 @@
+{
+  "general": {
+    "appName": "फ़्लटर स्टार्टर टेम्पलेट",
+    "loading": "लोड हो रहा है...",
+    "retry": "पुनः प्रयास करें"
+  },
+  "error": {
+    "title": "एक त्रुटि हुई"
+  },
+  "update": {
+    "required": "अपडेट आवश्यक",
+    "message": "ऐप का उपयोग जारी रखने के लिए कृपया नवीनतम संस्करण में अपडेट करें।",
+    "button": "अपडेट करें"
+  },
+  "home": {
+    "title": "होम",
+    "settings": "सेटिंग्स"
+  },
+  "settings": {
+    "title": "सेटिंग्स",
+    "appearance": "दिखावट",
+    "theme": "थीम",
+    "chooseTheme": "थीम चुनें",
+    "themeMode": "थीम मोड",
+    "themeModeSystem": "सिस्टम",
+    "themeModeLight": "लाइट",
+    "themeModeDark": "डार्क",
+    "appTheme": "ऐप थीम",
+    "backgroundAnimation": "पृष्ठभूमि एनिमेशन",
+    "language": "भाषा",
+    "support": "सहायता",
+    "contactUs": "हमसे संपर्क करें",
+    "rateApp": "ऐप को रेट करें",
+    "shareApp": "ऐप साझा करें",
+    "aboutTitle": "के बारे में",
+    "about": "के बारे में",
+    "legalAndPolicies": "कानूनी और नीतियाँ",
+    "privacyPolicy": "गोपनीयता नीति",
+    "termsOfService": "सेवा की शर्तें",
+    "kvkkClarification": "KVKK स्पष्टीकरण पाठ",
+    "consentDeclaration": "सहमति घोषणा",
+    "acceptableUsePolicy": "स्वीकार्य उपयोग नीति",
+    "refundPolicy": "रिफंड नीति",
+    "copyrightNotice": "कॉपीराइट सूचना",
+    "version": "संस्करण"
+  },
+  "onboarding": {
+    "step1Title": "चरण 1",
+    "step1Desc": "अपनी सामग्री यहाँ जोड़ें",
+    "step2Title": "स्वागत है!",
+    "step2Desc": "हमें खुशी है कि आप यहाँ हैं। यह ऐप आपके अनुभव को सरल और आनंददायक बनाने के लिए डिज़ाइन किया गया है। बस कुछ ही चरणों में आपको तैयार कर देते हैं।",
+    "step3Title": "अपनी थीम चुनें",
+    "step3Desc": "अपनी शैली के अनुसार एक रंग और मोड चुनें।",
+    "step4Title": "चरण 4",
+    "step4Desc": "अपनी सामग्री यहाँ जोड़ें",
+    "step5Title": "चरण 5",
+    "step5Desc": "अपनी सामग्री यहाँ जोड़ें"
+  },
+  "language": {
+    "chooseYourLanguage": "अपनी भाषा चुनें",
+    "selectPreferredLanguage": "अपनी पसंदीदा भाषा चुनें",
+    "continueButton": "जारी रखें"
+  }
+}

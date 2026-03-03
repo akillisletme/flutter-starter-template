@@ -31,6 +31,7 @@
     "support": "Destek",
     "contactUs": "Bize Ulaşın",
     "rateApp": "Uygulamayı Puanla",
+    "shareApp": "Uygulamayı Paylaş",
     "aboutTitle": "Hakkında",
     "about": "Hakkında",
     "legalAndPolicies": "Yasal & Politikalar",
@@ -46,13 +47,18 @@
   "onboarding": {
     "step1Title": "Adım 1",
     "step1Desc": "Buraya içerik ekleyin",
-    "step2Title": "Adım 2",
-    "step2Desc": "Buraya içerik ekleyin",
-    "step3Title": "Adım 3",
-    "step3Desc": "Buraya içerik ekleyin",
+    "step2Title": "Hoş Geldiniz!",
+    "step2Desc": "Burada olduğunuz için mutluyuz. Bu uygulama deneyiminizi basit ve keyifli hale getirmek için tasarlandı. Birkaç adımda sizi hazırlayalım.",
+    "step3Title": "Temanızı Seçin",
+    "step3Desc": "Tarzınıza uygun bir renk ve mod seçin.",
     "step4Title": "Adım 4",
     "step4Desc": "Buraya içerik ekleyin",
     "step5Title": "Adım 5",
     "step5Desc": "Buraya içerik ekleyin"
+  },
+  "language": {
+    "chooseYourLanguage": "Dilinizi Seçin",
+    "selectPreferredLanguage": "Tercih ettiğiniz dili seçin",
+    "continueButton": "Devam Et"
   }
 }

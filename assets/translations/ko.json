@@ -1,0 +1,64 @@
+{
+  "general": {
+    "appName": "Flutter 스타터 템플릿",
+    "loading": "로딩 중...",
+    "retry": "다시 시도"
+  },
+  "error": {
+    "title": "오류가 발생했습니다"
+  },
+  "update": {
+    "required": "업데이트 필요",
+    "message": "앱을 계속 사용하려면 최신 버전으로 업데이트해 주세요.",
+    "button": "업데이트"
+  },
+  "home": {
+    "title": "홈",
+    "settings": "설정"
+  },
+  "settings": {
+    "title": "설정",
+    "appearance": "외관",
+    "theme": "테마",
+    "chooseTheme": "테마 선택",
+    "themeMode": "테마 모드",
+    "themeModeSystem": "시스템",
+    "themeModeLight": "라이트",
+    "themeModeDark": "다크",
+    "appTheme": "앱 테마",
+    "backgroundAnimation": "배경 애니메이션",
+    "language": "언어",
+    "support": "지원",
+    "contactUs": "문의하기",
+    "rateApp": "앱 평가하기",
+    "shareApp": "앱 공유하기",
+    "aboutTitle": "정보",
+    "about": "정보",
+    "legalAndPolicies": "법적 사항 및 정책",
+    "privacyPolicy": "개인정보 처리방침",
+    "termsOfService": "서비스 이용약관",
+    "kvkkClarification": "KVKK 설명 텍스트",
+    "consentDeclaration": "동의 선언",
+    "acceptableUsePolicy": "허용 사용 정책",
+    "refundPolicy": "환불 정책",
+    "copyrightNotice": "저작권 고지",
+    "version": "버전"
+  },
+  "onboarding": {
+    "step1Title": "1단계",
+    "step1Desc": "여기에 콘텐츠를 추가하세요",
+    "step2Title": "환영합니다!",
+    "step2Desc": "여기 오셔서 반갑습니다. 이 앱은 간단하고 즐거운 경험을 제공하도록 설계되었습니다. 몇 단계만으로 설정을 완료해 보세요.",
+    "step3Title": "테마 선택",
+    "step3Desc": "스타일에 맞는 색상과 모드를 선택하세요.",
+    "step4Title": "4단계",
+    "step4Desc": "여기에 콘텐츠를 추가하세요",
+    "step5Title": "5단계",
+    "step5Desc": "여기에 콘텐츠를 추가하세요"
+  },
+  "language": {
+    "chooseYourLanguage": "언어를 선택하세요",
+    "selectPreferredLanguage": "선호하는 언어를 선택하세요",
+    "continueButton": "계속"
+  }
+}

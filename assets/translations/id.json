@@ -1,0 +1,64 @@
+{
+  "general": {
+    "appName": "Template Starter Flutter",
+    "loading": "Memuat...",
+    "retry": "Coba lagi"
+  },
+  "error": {
+    "title": "Terjadi Kesalahan"
+  },
+  "update": {
+    "required": "Pembaruan Diperlukan",
+    "message": "Silakan perbarui ke versi terbaru untuk terus menggunakan aplikasi.",
+    "button": "Perbarui"
+  },
+  "home": {
+    "title": "Beranda",
+    "settings": "Pengaturan"
+  },
+  "settings": {
+    "title": "Pengaturan",
+    "appearance": "Tampilan",
+    "theme": "Tema",
+    "chooseTheme": "Pilih Tema",
+    "themeMode": "Mode Tema",
+    "themeModeSystem": "Sistem",
+    "themeModeLight": "Terang",
+    "themeModeDark": "Gelap",
+    "appTheme": "Tema Aplikasi",
+    "backgroundAnimation": "Animasi Latar Belakang",
+    "language": "Bahasa",
+    "support": "Dukungan",
+    "contactUs": "Hubungi Kami",
+    "rateApp": "Beri Nilai Aplikasi",
+    "shareApp": "Bagikan Aplikasi",
+    "aboutTitle": "Tentang",
+    "about": "Tentang",
+    "legalAndPolicies": "Hukum & Kebijakan",
+    "privacyPolicy": "Kebijakan Privasi",
+    "termsOfService": "Ketentuan Layanan",
+    "kvkkClarification": "Teks Klarifikasi KVKK",
+    "consentDeclaration": "Pernyataan Persetujuan",
+    "acceptableUsePolicy": "Kebijakan Penggunaan yang Dapat Diterima",
+    "refundPolicy": "Kebijakan Pengembalian Dana",
+    "copyrightNotice": "Pemberitahuan Hak Cipta",
+    "version": "Versi"
+  },
+  "onboarding": {
+    "step1Title": "Langkah 1",
+    "step1Desc": "Tambahkan konten Anda di sini",
+    "step2Title": "Selamat Datang!",
+    "step2Desc": "Kami senang Anda di sini. Aplikasi ini dirancang untuk membuat pengalaman Anda sederhana dan menyenangkan. Mari siapkan Anda dalam beberapa langkah saja.",
+    "step3Title": "Pilih Tema Anda",
+    "step3Desc": "Pilih warna dan mode yang sesuai dengan gaya Anda.",
+    "step4Title": "Langkah 4",
+    "step4Desc": "Tambahkan konten Anda di sini",
+    "step5Title": "Langkah 5",
+    "step5Desc": "Tambahkan konten Anda di sini"
+  },
+  "language": {
+    "chooseYourLanguage": "Pilih Bahasa Anda",
+    "selectPreferredLanguage": "Pilih bahasa yang Anda inginkan",
+    "continueButton": "Lanjutkan"
+  }
+}
