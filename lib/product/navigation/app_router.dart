@@ -1,7 +1,9 @@
+import 'package:akillisletme/feature/home/cupertino_widgets/cupertino_widgets_view.dart';
 import 'package:akillisletme/feature/home/home_view.dart';
-import 'package:akillisletme/feature/settings/language_selection/language_selection_view.dart';
+import 'package:akillisletme/feature/home/material_widgets/material_widgets_view.dart';
 import 'package:akillisletme/feature/login_process/onboarding/onboarding_view.dart';
 import 'package:akillisletme/feature/settings/about/about_view.dart';
+import 'package:akillisletme/feature/settings/language_selection/language_selection_view.dart';
 import 'package:akillisletme/feature/settings/settings_view.dart';
 import 'package:akillisletme/product/navigation/route_transitions.dart';
 import 'package:akillisletme/product/service/service_locator.dart';
@@ -20,6 +22,8 @@ part 'app_router.g.dart';
         TypedGoRoute<LanguageSelectionRoute>(path: 'language'),
       ],
     ),
+    TypedGoRoute<MaterialWidgetsRoute>(path: 'material-widgets'),
+    TypedGoRoute<CupertinoWidgetsRoute>(path: 'cupertino-widgets'),
   ],
 )
 class HomeRoute extends GoRouteData with $HomeRoute {
@@ -63,6 +67,30 @@ class LanguageSelectionRoute extends GoRouteData with $LanguageSelectionRoute {
     return slideRightTransition(
       key: state.pageKey,
       child: const LanguageSelectionView(),
+    );
+  }
+}
+
+class MaterialWidgetsRoute extends GoRouteData with $MaterialWidgetsRoute {
+  const MaterialWidgetsRoute();
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return slideRightTransition(
+      key: state.pageKey,
+      child: const MaterialWidgetsView(),
+    );
+  }
+}
+
+class CupertinoWidgetsRoute extends GoRouteData with $CupertinoWidgetsRoute {
+  const CupertinoWidgetsRoute();
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return slideRightTransition(
+      key: state.pageKey,
+      child: const CupertinoWidgetsView(),
     );
   }
 }
