@@ -66,18 +66,18 @@ class MainActivity : FlutterActivity() {
                     "increment" -> {
                         val v = prefs.getInt(KEY_COUNTER, 0) + 1
                         prefs.edit().putInt(KEY_COUNTER, v).apply()
-                        updateHomeWidget()
+                        updateHomeWidget(v)
                         result.success(v)
                     }
                     "decrement" -> {
                         val v = prefs.getInt(KEY_COUNTER, 0) - 1
                         prefs.edit().putInt(KEY_COUNTER, v).apply()
-                        updateHomeWidget()
+                        updateHomeWidget(v)
                         result.success(v)
                     }
                     "reset" -> {
                         prefs.edit().putInt(KEY_COUNTER, 0).apply()
-                        updateHomeWidget()
+                        updateHomeWidget(0)
                         result.success(0)
                     }
                     else -> result.notImplemented()
@@ -86,11 +86,12 @@ class MainActivity : FlutterActivity() {
         }
     }
 
-    private fun updateHomeWidget() {
+    private fun updateHomeWidget(counter: Int) {
         val manager = AppWidgetManager.getInstance(this)
         val ids = manager.getAppWidgetIds(ComponentName(this, HomeWidgetProvider::class.java))
         if (ids.isEmpty()) return
         val views = RemoteViews(packageName, R.layout.widget_home)
+        views.setTextViewText(R.id.tv_counter, counter.toString())
         manager.updateAppWidget(ids, views)
     }
 

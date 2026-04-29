@@ -3,8 +3,12 @@ package com.cleanstart.akillisletme.overlay
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.Service
+import android.appwidget.AppWidgetManager
+import android.content.BroadcastReceiver
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.graphics.PixelFormat
 import android.os.Build
 import android.os.IBinder
@@ -13,16 +17,32 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
+import android.widget.RemoteViews
+import android.widget.TextView
 import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 import com.cleanstart.akillisletme.R
+import com.cleanstart.akillisletme.home_widget.HomeWidgetProvider
 
 class OverlayService : Service() {
 
     private lateinit var windowManager: WindowManager
     private var overlayView: View? = null
 
+    private val counterRefreshReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            refreshCounter()
+        }
+    }
+
     override fun onCreate() {
         super.onCreate()
+        ContextCompat.registerReceiver(
+            this,
+            counterRefreshReceiver,
+            IntentFilter(ACTION_REFRESH),
+            ContextCompat.RECEIVER_NOT_EXPORTED,
+        )
         createNotificationChannel()
         startForeground(NOTIFICATION_ID, buildNotification())
     }
@@ -33,6 +53,7 @@ class OverlayService : Service() {
     }
 
     override fun onDestroy() {
+        unregisterReceiver(counterRefreshReceiver)
         removeOverlay()
         super.onDestroy()
     }
@@ -64,6 +85,7 @@ class OverlayService : Service() {
 
     private fun bindViews() {
         val view = overlayView ?: return
+        refreshCounter()
         view.findViewById<View>(R.id.btn_overlay_close).setOnClickListener { stopSelf() }
         view.findViewById<View>(R.id.btn_overlay_open).setOnClickListener { openApp() }
         view.findViewById<View>(R.id.btn_overlay_increment).setOnClickListener { changeCounter(+1) }
@@ -74,6 +96,22 @@ class OverlayService : Service() {
         val prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         val newValue = prefs.getInt(KEY_COUNTER, 0) + delta
         prefs.edit().putInt(KEY_COUNTER, newValue).apply()
+        refreshCounter()
+        updateHomeWidget(newValue)
+    }
+
+    private fun refreshCounter() {
+        val count = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE).getInt(KEY_COUNTER, 0)
+        overlayView?.findViewById<TextView>(R.id.tv_overlay_counter)?.text = count.toString()
+    }
+
+    private fun updateHomeWidget(counter: Int) {
+        val manager = AppWidgetManager.getInstance(this)
+        val ids = manager.getAppWidgetIds(ComponentName(this, HomeWidgetProvider::class.java))
+        if (ids.isEmpty()) return
+        val views = RemoteViews(packageName, R.layout.widget_home)
+        views.setTextViewText(R.id.tv_counter, counter.toString())
+        manager.updateAppWidget(ids, views)
     }
 
     private fun openApp() {
@@ -143,6 +181,7 @@ class OverlayService : Service() {
     private val Int.dp: Int get() = (this * resources.displayMetrics.density).toInt()
 
     companion object {
+        const val ACTION_REFRESH = "com.cleanstart.akillisletme.overlay.ACTION_REFRESH"
         private const val NOTIFICATION_ID = 1
         private const val CHANNEL_ID = "overlay_channel"
         private const val PREFS_NAME = "widget_prefs"

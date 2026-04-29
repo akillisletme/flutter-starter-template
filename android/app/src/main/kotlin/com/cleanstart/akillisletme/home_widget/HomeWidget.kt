@@ -9,6 +9,7 @@ import android.content.Intent
 import android.widget.RemoteViews
 import androidx.core.app.PendingIntentCompat
 import com.cleanstart.akillisletme.R
+import com.cleanstart.akillisletme.overlay.OverlayService
 
 // ─── Provider ────────────────────────────────────────────────────────────────
 
@@ -27,6 +28,7 @@ class HomeWidgetProvider : AppWidgetProvider() {
         val counter = prefs.getInt(KEY_COUNTER, 0)
 
         val views = RemoteViews(context.packageName, R.layout.widget_home)
+        views.setTextViewText(R.id.tv_counter, counter.toString())
         views.setOnClickPendingIntent(
             R.id.btn_increment,
             buildIntent(context, HomeWidgetReceiver.ACTION_INCREMENT, REQUEST_INCREMENT),
@@ -74,7 +76,12 @@ class HomeWidgetReceiver : BroadcastReceiver() {
         val manager = AppWidgetManager.getInstance(context)
         val ids = manager.getAppWidgetIds(ComponentName(context, HomeWidgetProvider::class.java))
         val views = RemoteViews(context.packageName, R.layout.widget_home)
+        views.setTextViewText(R.id.tv_counter, newValue.toString())
         manager.updateAppWidget(ids, views)
+
+        context.sendBroadcast(
+            Intent(OverlayService.ACTION_REFRESH).setPackage(context.packageName)
+        )
     }
 
     companion object {
