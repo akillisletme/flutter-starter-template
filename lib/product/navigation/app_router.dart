@@ -1,3 +1,4 @@
+import 'package:akillisletme/feature/home/android_modules/android_modules_view.dart';
 import 'package:akillisletme/feature/home/cupertino_widgets/cupertino_widgets_view.dart';
 import 'package:akillisletme/feature/home/home_view.dart';
 import 'package:akillisletme/feature/home/material_widgets/material_widgets_view.dart';
@@ -24,6 +25,7 @@ part 'app_router.g.dart';
     ),
     TypedGoRoute<MaterialWidgetsRoute>(path: 'material-widgets'),
     TypedGoRoute<CupertinoWidgetsRoute>(path: 'cupertino-widgets'),
+    TypedGoRoute<AndroidModulesRoute>(path: 'android-modules'),
   ],
 )
 class HomeRoute extends GoRouteData with $HomeRoute {
@@ -91,6 +93,18 @@ class CupertinoWidgetsRoute extends GoRouteData with $CupertinoWidgetsRoute {
     return slideRightTransition(
       key: state.pageKey,
       child: const CupertinoWidgetsView(),
+    );
+  }
+}
+
+class AndroidModulesRoute extends GoRouteData with $AndroidModulesRoute {
+  const AndroidModulesRoute();
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return slideRightTransition(
+      key: state.pageKey,
+      child: const AndroidModulesView(),
     );
   }
 }

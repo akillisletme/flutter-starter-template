@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:akillisletme/feature/home/home_view_mode.dart';
 import 'package:akillisletme/product/const/app_paddings.dart';
 import 'package:akillisletme/product/init/language/locale_keys.g.dart';
@@ -43,6 +45,14 @@ class _HomeViewState extends HomeViewMode {
               icon: Icons.phone_iphone,
               onPressed: () => const CupertinoWidgetsRoute().push<void>(context),
             ),
+            if (Platform.isAndroid) ...[
+              const Divider(),
+              AppSecondaryButton(
+                label: LocaleKeys.androidModules_title.tr(),
+                icon: Icons.android,
+                onPressed: () => const AndroidModulesRoute().push<void>(context),
+              ),
+            ],
           ],
         ),
       ),

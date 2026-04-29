@@ -59,6 +59,8 @@ lib/
 │   ├── home/
 │   │   ├── home_view.dart                 # Home page (StatefulWidget + ViewModel)
 │   │   ├── home_view_mode.dart            # ViewModel (abstract State)
+│   │   ├── android_modules/
+│   │   │   └── android_modules_view.dart  # Android native modules demo + izin UI
 │   │   └── widget/
 │   │       └── home_background.dart       # Global animated background
 │   ├── login_process/
@@ -71,6 +73,8 @@ lib/
     ├── cache/                             # SharedCache + Hive (ProductCache)
     ├── const/                             # AppString, AppPaddings, RegexTypes
     ├── init/                              # App init, localization, AppBuilder
+    ├── model/                             # Shared immutable data models
+    │   └── android_module_info.dart       # AndroidModuleInfo (icon, title, features)
     ├── navigation/                        # GoRouter config + transitions
     ├── service/                           # Services + GetIt DI
     ├── state/                             # App-wide cubits (ThemeCubit)
@@ -78,6 +82,21 @@ lib/
     ├── generated/                         # FlutterGen output
     ├── utils/                             # AppMessenger, responsive, haptics
     └── widget/                            # Shared buttons
+
+android/app/src/main/
+├── kotlin/com/cleanstart/akillisletme/
+│   ├── MainActivity.kt                    # Flutter bridge (MethodChannels + lifecycle)
+│   ├── home_widget/
+│   │   └── HomeWidget.kt                  # HomeWidgetProvider + HomeWidgetReceiver
+│   └── overlay/
+│       └── OverlayService.kt              # Floating overlay foreground service
+└── res/
+    ├── layout/
+    │   ├── widget_home.xml                # Home screen widget layout
+    │   └── overlay_window.xml             # Floating overlay layout
+    ├── drawable/                          # Widget/overlay shape drawables
+    └── xml/
+        └── app_widget_info.xml            # Widget provider metadata
 ```
 
 ---
@@ -217,6 +236,80 @@ Validation patterns with Turkish character support: fullName, email, phoneNumber
 - **File:** `lib/product/const/regex_types.dart`
 - **Usage:** `RegexTypes.email.hasMatch(value)`
 
+### 15. Home Screen Widget (Android)
+
+Native Android home screen widget — no third-party packages. Users can control the counter directly from their home screen without opening the app.
+
+- **Kotlin:** `android/.../home_widget/HomeWidget.kt` (`HomeWidgetProvider` + `HomeWidgetReceiver`)
+- **Layout:** `res/layout/widget_home.xml` (RemoteViews — limited to standard Android views)
+- **Shared data:** `SharedPreferences("widget_prefs", key: "counter")` — same file read by overlay and Flutter
+- **Flutter bridge:** `MethodChannel('counter')` in `MainActivity.kt` → `get / increment / decrement / reset`
+- **Demo UI:** `lib/feature/home/android_modules/android_modules_view.dart`
+
+Widget button taps → `HomeWidgetReceiver` → updates SharedPreferences → updates widget UI → sends `ACTION_REFRESH` broadcast to overlay.
+
+### 16. Floating Overlay (Android)
+
+A draggable floating window drawn over all other apps using `WindowManager`. Visible only when the Flutter app is in the background.
+
+- **Kotlin:** `android/.../overlay/OverlayService.kt` (ForegroundService)
+- **Layout:** `res/layout/overlay_window.xml`
+- **Permission required:** `SYSTEM_ALERT_WINDOW` — requested from `android_modules_view.dart`
+- **Lifecycle:** `MainActivity.onStop()` → `startService()`, `MainActivity.onStart()` → `stopService()`
+- **Shared data:** same `SharedPreferences("widget_prefs")` as home widget
+- **Sync:** listens to `ACTION_REFRESH` broadcast; sends `AppWidgetManager.updateAppWidget()` on counter change
+
+Drag threshold: 8px — smaller touches pass through to buttons.
+
+**Permissions declared in `AndroidManifest.xml`:**
+```
+SYSTEM_ALERT_WINDOW, FOREGROUND_SERVICE, FOREGROUND_SERVICE_SPECIAL_USE
+```
+
+---
+
+> ### 🤖 Claude Code — Android Modülleri Kurulum Soruları
+>
+> Bu repo klonlandığında ve kullanıcı geliştirmeye başlamadan önce,
+> aşağıdaki soruları kullanıcıya sor. Varsayılanları belirt ve
+> kullanıcının kendi projesine göre özelleştirmesine yardımcı ol.
+>
+> **Soru 1 — Veri tipi**
+> Sayaç (Int) yerine ne saklamak istiyorsun?
+> - Cevaba göre `SharedPreferences` key'ini, `MethodChannel` metodlarını ve widget/overlay layout metin alanlarını güncelle.
+> - Varsayılan: `"counter"` (Int)
+>
+> **Soru 2 — Widget başlığı**
+> Ana ekran widget'ının başlık metni ne olsun?
+> - `res/layout/widget_home.xml` → `tv_widget_title` TextView'ının `android:text` alanını güncelle.
+> - Varsayılan: `"Sayaç"`
+>
+> **Soru 3 — Overlay başlığı**
+> Yüzen penceredeki başlık metni ne olsun?
+> - `res/layout/overlay_window.xml` → ilk `TextView`'ın `android:text` alanını güncelle.
+> - Varsayılan: `"Sayaç"`
+>
+> **Soru 4 — Bildirim metni**
+> Yüzen pencere arka planda çalışırken gösterilen bildirim metni ne olsun?
+> - `OverlayService.kt` → `buildNotification()` içindeki `setContentTitle(...)` değerini güncelle.
+> - Varsayılan: `"Uygulama arka planda çalışıyor"`
+>
+> **Soru 5 — MethodChannel adları**
+> Flutter–Kotlin arasındaki channel adlarını değiştirmek istiyor musun?
+> - `MainActivity.kt`'deki `OVERLAY_CHANNEL` ve `COUNTER_CHANNEL` sabitlerini ve Flutter tarafındaki `MethodChannel(...)` çağrılarını (`android_modules_view.dart`) güncelle.
+> - Varsayılan: `"counter"`, `"overlay_permission"`
+>
+> **Soru 6 — Overlay butonları**
+> Yüzen penceredeki buton seti yeterli mi, yoksa buton eklemek/çıkarmak istiyor musun?
+> - `res/layout/overlay_window.xml` layout + `OverlayService.kt` → `bindViews()` metodunu güncelle.
+> - Varsayılan: `−`, `Sıfırla`, `+`, `↗ (uygulamayı aç)`, `✕ (kapat)`
+>
+> **Soru 7 — Demo sayfası**
+> `android_modules_view.dart` sadece bir demo/izin sayfasıdır. Bu sayfayı kendi UI'ına dönüştürmek mi istiyorsun, yoksa kaldırmak mı?
+> - Kaldırılırsa: `app_router.dart`'tan `AndroidModulesRoute`'u ve `home_view.dart`'tan ilgili butonu da sil.
+
+---
+
 ### 14. Firebase (Optional)
 
 Firebase Remote Config integration is ready but commented out. To activate:
@@ -283,8 +376,9 @@ After post-clone setup (`setup_after_clone.md`) is complete:
 5. Change or customize the animation text in `home_background.dart`
 6. Remove unneeded color variants from `app_theme_variant.dart`
 7. Update onboarding step contents
-8. Run `flutter pub get && dart run build_runner build --delete-conflicting-outputs`
-9. Follow the checklist in `doc/new_feature/README.md` to start adding features
+8. **Android native modules** — answer the 7 setup questions above (§15–16) to adapt the widget and overlay to your data model
+9. Run `flutter pub get && dart run build_runner build --delete-conflicting-outputs`
+10. Follow the checklist in `doc/new_feature/README.md` to start adding features
 
 ---
 

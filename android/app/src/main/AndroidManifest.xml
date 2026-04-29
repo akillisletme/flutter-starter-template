@@ -1,4 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+
     <application
         android:label="akillisletme"
         android:name="${applicationName}"
@@ -25,6 +29,37 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <!-- ── Home Widget Module ─────────────────────────────────────────── -->
+        <receiver
+            android:name=".home_widget.HomeWidgetProvider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/app_widget_info" />
+        </receiver>
+
+        <receiver
+            android:name=".home_widget.HomeWidgetReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.cleanstart.akillisletme.home_widget.ACTION_INCREMENT" />
+                <action android:name="com.cleanstart.akillisletme.home_widget.ACTION_DECREMENT" />
+            </intent-filter>
+        </receiver>
+
+        <!-- ── Floating Overlay Module ────────────────────────────────────── -->
+        <service
+            android:name=".overlay.OverlayService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Floating overlay window for quick controls" />
+        </service>
+
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data

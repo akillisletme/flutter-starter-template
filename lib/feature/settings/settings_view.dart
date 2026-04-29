@@ -1,11 +1,15 @@
+import 'dart:io';
+
 import 'package:akillisletme/feature/settings/widget/about_tile.dart';
 import 'package:akillisletme/feature/settings/widget/background_animation_tile.dart';
 import 'package:akillisletme/feature/settings/widget/contact_us_tile.dart';
 import 'package:akillisletme/feature/settings/widget/language_tile.dart';
+import 'package:akillisletme/feature/settings/widget/overlay_tile.dart';
 import 'package:akillisletme/feature/settings/widget/rate_app_tile.dart';
 import 'package:akillisletme/feature/settings/widget/settings_section.dart';
 import 'package:akillisletme/feature/settings/widget/share_app_tile.dart';
 import 'package:akillisletme/feature/settings/widget/theme_tile.dart';
+import 'package:akillisletme/product/const/app_paddings.dart';
 import 'package:akillisletme/product/init/language/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +34,16 @@ class SettingsView extends StatelessWidget {
               BackgroundAnimationTile(),
             ],
           ),
-          const SizedBox(height: 16),
+          if (Platform.isAndroid) ...[
+            const SizedBox(height: AppPaddings.l),
+            SettingsSection(
+              title: LocaleKeys.settings_android.tr(),
+              children: const [
+                OverlayTile(),
+              ],
+            ),
+          ],
+          const SizedBox(height: AppPaddings.l),
           SettingsSection(
             title: LocaleKeys.settings_support.tr(),
             children: const [
@@ -39,7 +52,7 @@ class SettingsView extends StatelessWidget {
               ShareAppTile(),
             ],
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: AppPaddings.l),
           SettingsSection(
             title: LocaleKeys.settings_aboutTitle.tr(),
             children: const [
