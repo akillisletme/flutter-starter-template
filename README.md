@@ -11,6 +11,7 @@ A ready-to-use Flutter boilerplate for starting new projects without setting up 
   <img src="app_image/home_1.png" width="180" />
   <img src="app_image/settings.png" width="180" />
   <img src="app_image/about.png" width="180" />
+  <img src="app_image/widget.png" width="180" />
 </p>
 
 ## Tech Stack
