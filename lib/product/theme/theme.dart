@@ -1,5 +1,6 @@
 import 'package:akillisletme/product/theme/app_theme_colors.dart';
-import 'package:akillisletme/product/theme/app_theme_variant.dart';
+import 'package:akillisletme/product/theme/spec/theme_spec.dart';
+import 'package:akillisletme/product/theme/state/theme_state.dart';
 import 'package:flutter/material.dart';
 
 part 'base/color_schemes.dart';
@@ -16,8 +17,23 @@ part 'parts/text_theme.dart';
 
 final class AppTheme {
   AppTheme._();
-  static ThemeData darkTheme(AppThemeVariant variant) =>
-      _buildDarkTheme(_darkSchemeFor(variant));
-  static ThemeData lightTheme(AppThemeVariant variant) =>
-      _buildLightTheme(_lightSchemeFor(variant));
+
+  /// Dark `ThemeData`. [dynamicScheme] verilir ve [ThemeState.useSystemColors]
+  /// aciksa Material You (sistem) renkleri kullanilir.
+  static ThemeData darkTheme(ThemeState state, {ColorScheme? dynamicScheme}) {
+    final spec = state.spec;
+    return _buildDarkTheme(
+      _resolveScheme(state, spec, Brightness.dark, dynamicScheme),
+      fontFamily: spec.fontFamily,
+    );
+  }
+
+  /// Light `ThemeData`.
+  static ThemeData lightTheme(ThemeState state, {ColorScheme? dynamicScheme}) {
+    final spec = state.spec;
+    return _buildLightTheme(
+      _resolveScheme(state, spec, Brightness.light, dynamicScheme),
+      fontFamily: spec.fontFamily,
+    );
+  }
 }

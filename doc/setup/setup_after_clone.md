@@ -65,7 +65,7 @@ Ask the user:
 
 ## Step 3a: Activate Firebase Integration
 
-Read the `doc/new_feature/firebase_commented_out.md` file. It describes which files have which lines
+Read the `doc/setup/firebase.md` file. It describes which files have which lines
 commented out. Remove all comment markers tagged with `// TODO: Firebase kurulduktan sonra`
 and activate the original code.
 

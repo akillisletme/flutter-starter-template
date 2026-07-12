@@ -87,5 +87,45 @@
     "infoNote": "Bu modüller tamamen native Kotlin ile yazılmıştır. Üçüncü parti paket gerektirmez.",
     "notSupportedTitle": "Yalnızca Android",
     "notSupportedDesc": "Bu modüller Android platforma özeldir."
+  },
+  "theme": {
+    "title": "Kişiselleştir",
+    "preview": "Önizleme",
+    "previewHeadline": "Sana özel",
+    "previewBody": "Temanın uygulamada nasıl göründüğünü gör.",
+    "previewAction": "Buton",
+    "sectionColors": "Renkler",
+    "sectionNeutral": "Nötr",
+    "pickColor": "Renk seç",
+    "hue": "Ton",
+    "saturation": "Doygunluk",
+    "brightnessLevel": "Parlaklık",
+    "apply": "Uygula",
+    "systemColors": "Sistem renkleri",
+    "systemColorsDesc": "Duvar kağıdı renklerini kullan (Android 12+)",
+    "contrast": "Kontrast",
+    "contrastStandard": "Standart",
+    "contrastHigh": "Yüksek",
+    "mode": "Mod",
+    "presets": "Hazır temalar",
+    "name": {
+      "purple": "Mor",
+      "blue": "Mavi",
+      "green": "Yeşil",
+      "orange": "Turuncu",
+      "red": "Kırmızı",
+      "black": "Siyah",
+      "teal": "Turkuaz",
+      "indigo": "İndigo",
+      "monochrome": "Monokrom",
+      "amoled": "AMOLED",
+      "custom": "Özel"
+    },
+    "preset": {
+      "minimal": "Minimal",
+      "ocean": "Okyanus",
+      "sunset": "Gün batımı",
+      "amoled": "AMOLED"
+    }
   }
 }

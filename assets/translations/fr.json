@@ -60,5 +60,45 @@
     "chooseYourLanguage": "Choisissez votre langue",
     "selectPreferredLanguage": "Sélectionnez votre langue préférée",
     "continueButton": "Continuer"
+  },
+  "theme": {
+    "title": "Personnaliser",
+    "preview": "Aperçu",
+    "previewHeadline": "À votre image",
+    "previewBody": "Voyez votre thème dans l'application.",
+    "previewAction": "Bouton",
+    "sectionColors": "Couleurs",
+    "sectionNeutral": "Neutre",
+    "pickColor": "Choisir une couleur",
+    "hue": "Teinte",
+    "saturation": "Saturation",
+    "brightnessLevel": "Luminosité",
+    "apply": "Appliquer",
+    "systemColors": "Couleurs système",
+    "systemColorsDesc": "Utiliser les couleurs de votre fond d'écran (Android 12+)",
+    "contrast": "Contraste",
+    "contrastStandard": "Standard",
+    "contrastHigh": "Élevé",
+    "mode": "Mode",
+    "presets": "Préréglages",
+    "name": {
+      "purple": "Violet",
+      "blue": "Bleu",
+      "green": "Vert",
+      "orange": "Orange",
+      "red": "Rouge",
+      "black": "Noir",
+      "teal": "Sarcelle",
+      "indigo": "Indigo",
+      "monochrome": "Monochrome",
+      "amoled": "AMOLED",
+      "custom": "Personnalisé"
+    },
+    "preset": {
+      "minimal": "Minimal",
+      "ocean": "Océan",
+      "sunset": "Coucher de soleil",
+      "amoled": "AMOLED"
+    }
   }
 }

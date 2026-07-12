@@ -60,5 +60,45 @@
     "chooseYourLanguage": "选择您的语言",
     "selectPreferredLanguage": "选择您的首选语言",
     "continueButton": "继续"
+  },
+  "theme": {
+    "title": "个性化",
+    "preview": "预览",
+    "previewHeadline": "打造专属",
+    "previewBody": "查看主题在应用中的效果。",
+    "previewAction": "按钮",
+    "sectionColors": "颜色",
+    "sectionNeutral": "中性",
+    "pickColor": "选择颜色",
+    "hue": "色相",
+    "saturation": "饱和度",
+    "brightnessLevel": "亮度",
+    "apply": "应用",
+    "systemColors": "系统颜色",
+    "systemColorsDesc": "使用壁纸颜色（Android 12+）",
+    "contrast": "对比度",
+    "contrastStandard": "标准",
+    "contrastHigh": "高",
+    "mode": "模式",
+    "presets": "预设",
+    "name": {
+      "purple": "紫色",
+      "blue": "蓝色",
+      "green": "绿色",
+      "orange": "橙色",
+      "red": "红色",
+      "black": "黑色",
+      "teal": "青色",
+      "indigo": "靛蓝",
+      "monochrome": "单色",
+      "amoled": "AMOLED",
+      "custom": "自定义"
+    },
+    "preset": {
+      "minimal": "极简",
+      "ocean": "海洋",
+      "sunset": "日落",
+      "amoled": "AMOLED"
+    }
   }
 }

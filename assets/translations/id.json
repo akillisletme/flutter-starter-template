@@ -60,5 +60,45 @@
     "chooseYourLanguage": "Pilih Bahasa Anda",
     "selectPreferredLanguage": "Pilih bahasa yang Anda inginkan",
     "continueButton": "Lanjutkan"
+  },
+  "theme": {
+    "title": "Personalisasi",
+    "preview": "Pratinjau",
+    "previewHeadline": "Jadikan milikmu",
+    "previewBody": "Lihat tampilan tema kamu di aplikasi.",
+    "previewAction": "Tombol",
+    "sectionColors": "Warna",
+    "sectionNeutral": "Netral",
+    "pickColor": "Pilih warna",
+    "hue": "Rona",
+    "saturation": "Saturasi",
+    "brightnessLevel": "Kecerahan",
+    "apply": "Terapkan",
+    "systemColors": "Warna sistem",
+    "systemColorsDesc": "Gunakan warna dari wallpaper (Android 12+)",
+    "contrast": "Kontras",
+    "contrastStandard": "Standar",
+    "contrastHigh": "Tinggi",
+    "mode": "Mode",
+    "presets": "Preset",
+    "name": {
+      "purple": "Ungu",
+      "blue": "Biru",
+      "green": "Hijau",
+      "orange": "Oranye",
+      "red": "Merah",
+      "black": "Hitam",
+      "teal": "Tosca",
+      "indigo": "Indigo",
+      "monochrome": "Monokrom",
+      "amoled": "AMOLED",
+      "custom": "Khusus"
+    },
+    "preset": {
+      "minimal": "Minimal",
+      "ocean": "Samudra",
+      "sunset": "Senja",
+      "amoled": "AMOLED"
+    }
   }
 }

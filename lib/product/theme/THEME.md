@@ -2,56 +2,79 @@
 
 ## Mimari
 
-Theme sistemi 3 ana bileşenden oluşur:
+Theme sistemi şu bileşenlerden oluşur:
 
-1. **Renk Varyantı** (`AppThemeVariant`) — 8 farklı renk paleti, `ColorScheme.fromSeed()` ile Material 3 uyumlu
-2. **Tema Modu** (`ThemeMode`) — System / Light / Dark seçimi
-3. **Semantik Renkler** (`AppThemeColors`) — Variant'tan bağımsız, dark/light'a duyarlı sabit renkler
-
-Her iki kullanıcı tercihi (variant + mode) `SharedCache` ile string key olarak persist edilir. Enum sırası değişse bile eski kullanıcıların tercihleri korunur.
+1. **Tema Spec'i** (`ThemeSpec`) — bir temanın `ColorScheme schemeFor(Brightness)` üretme stratejisi. Alt tipler:
+   - `SeedThemeSpec` — M3 seed varyantları (8 renk) + opsiyonel kontrast
+   - `CustomSeedThemeSpec` — kullanıcı seed'i + `dynamicSchemeVariant` + `contrastLevel`
+   - `RawSchemeThemeSpec` — tam kontrollü `ColorScheme` (AMOLED saf siyah; v3 hacker için hazır)
+2. **Renk Varyantı** (`AppThemeVariant`) — 8 seed renk paleti
+3. **Tema Kataloğu** (`AppThemeOption` / `AppThemeCatalog`) — seçim sayfasındaki hazır temalar (8 seed + nötr/AMOLED)
+4. **Presetler** (`ThemePreset`) — renk + mod kombinasyonu (tek dokunuş)
+5. **Tema Modu** (`ThemeMode`) — System / Light / Dark
+6. **Material You** — `dynamic_color` ile sistem (duvar kağıdı) renkleri (Android 12+)
+7. **Semantik Renkler** (`AppThemeColors`) — variant'tan bağımsız, dark/light duyarlı sabit renkler
 
 ## State Yönetimi
 
 **`ThemeCubit`** → `ThemeState` emit eder.
 
-`ThemeState` iki alan içerir:
-- `variant` → `AppThemeVariant` (hangi renk paleti)
-- `themeMode` → `ThemeMode` (system/light/dark)
+`ThemeState` alanları:
+- `themeId` → aktif tema kimliği (`purple`... / `monochrome` / `amoled` / `custom`)
+- `customSeedArgb` → `custom` teması için seçilen seed (ARGB int)
+- `schemeVariant` → custom/nötr temalarda `DynamicSchemeVariant`
+- `contrastLevel` → -1..1 (0 = standart, 1 = yüksek)
+- `useSystemColors` → Material You açık/kapalı
+- `themeMode` → system/light/dark
+
+`state.spec` resolve edilmiş `ThemeSpec`'i, `state.previewColor` tile/önizleme rengini verir.
+Geriye dönük uyum için `state.variant` hâlâ bir `AppThemeVariant` döndürür.
 
 ```dart
-// Variant değiştir
-context.read<ThemeCubit>().setVariant(AppThemeVariant.blue);
+// Hazır tema seç (seed veya nötr)
+context.read<ThemeCubit>().selectTheme('blue');
+context.read<ThemeCubit>().setVariant(AppThemeVariant.blue); // eşdeğer
 
-// Tema modu değiştir
+// Custom seed
+context.read<ThemeCubit>().setCustomSeed(const Color(0xFF00BCD4));
+
+// Kontrast / Material You / mod
+context.read<ThemeCubit>().setContrastLevel(1);
+context.read<ThemeCubit>().setUseSystemColors(enabled: true);
 context.read<ThemeCubit>().setThemeMode(ThemeMode.dark);
 
-// State oku
-final state = context.watch<ThemeCubit>().state;
-state.variant;   // AppThemeVariant
-state.themeMode; // ThemeMode
+// Preset
+context.read<ThemeCubit>().applyPreset(ThemePreset.all.first);
 ```
 
 ## Persistence
 
 | Veri | SharedKeys | Tip | Örnek |
 |------|-----------|-----|-------|
-| Renk varyantı | `SharedKeys.themeVariant` | `String` (variant key) | `"purple"`, `"black"` |
-| Tema modu | `SharedKeys.theme` | `String` (ThemeMode.name) | `"system"`, `"light"`, `"dark"` |
+| Tema kimliği | `themeVariant` | `String` | `"purple"`, `"amoled"`, `"custom"` |
+| Custom seed | `themeCustomSeed` | `int` (ARGB) | `0xFF00BCD4` |
+| Scheme variant | `themeSchemeVariant` | `String` | `"tonalSpot"` |
+| Kontrast | `themeContrast` | `double` | `0.0`, `1.0` |
+| Material You | `themeUseSystemColors` | `bool` | `true` |
+| Tema modu | `theme` | `String` | `"system"`, `"dark"` |
 
-Varsayılan değerler:
-- Variant: `AppThemeVariant.purple`
-- ThemeMode: `ThemeMode.system`
+Eski `themeVariant` string değerleri (`"purple"`...) doğrudan yeni `themeId`'ye uyar
+— göçsüz geri uyum (`AppThemeVariant.fromKey` fallback: purple).
 
 ## MaterialApp Entegrasyonu
 
-`main.dart`'ta ThemeCubit watch edilerek 3 property set edilir:
+`main.dart` `DynamicColorBuilder` ile sarmalanır; sistem (Material You) şemaları
+`AppTheme`'e geçirilir ve `useSystemColors` açıksa kullanılır:
 
 ```dart
 final themeState = context.watch<ThemeCubit>().state;
-MaterialApp.router(
-  themeMode: themeState.themeMode,
-  darkTheme: AppTheme.darkTheme(themeState.variant),
-  theme: AppTheme.lightTheme(themeState.variant),
+DynamicColorBuilder(
+  builder: (lightDynamic, darkDynamic) => MaterialApp.router(
+    themeMode: themeState.themeMode,
+    theme: AppTheme.lightTheme(themeState, dynamicScheme: lightDynamic),
+    darkTheme: AppTheme.darkTheme(themeState, dynamicScheme: darkDynamic),
+    ...
+  ),
 );
 ```
 
@@ -59,42 +82,41 @@ MaterialApp.router(
 
 ```
 lib/product/theme/
-├── THEME.md                          # Bu dosya
-├── app_theme_variant.dart            # Enum — 8 renk paleti
-├── app_theme_colors.dart             # ThemeExtension — dark/light duyarlı semantik renkler + context.appColors extension
-├── theme.dart                        # AppTheme giriş noktası (part files)
+├── THEME.md
+├── app_theme_variant.dart       # Enum — 8 seed paleti
+├── app_theme_option.dart        # Tema kataloğu (8 seed + nötr/AMOLED) + AppThemeIds
+├── theme_preset.dart            # Renk+mod presetleri
+├── app_theme_colors.dart        # ThemeExtension — semantik renkler
+├── theme.dart                   # AppTheme giriş noktası (part files)
+├── spec/
+│   └── theme_spec.dart          # ThemeSpec + Seed/CustomSeed/RawScheme + amoledThemeSpec()
 ├── base/
-│   ├── color_schemes.dart            # Variant → ColorScheme helper'ları
-│   ├── dark_theme.dart               # Dark ThemeData builder (AppThemeColors.dark)
-│   └── light_theme.dart              # Light ThemeData builder (AppThemeColors.light)
+│   ├── color_schemes.dart       # _resolveScheme (spec ↔ Material You)
+│   ├── dark_theme.dart          # Dark ThemeData builder (fontFamily destekli)
+│   └── light_theme.dart         # Light ThemeData builder (fontFamily destekli)
 ├── parts/
-│   ├── appbar_theme.dart             # AppBar teması (transparent, centered)
-│   ├── button_theme.dart             # Elevated, Filled, Outlined buton temaları
-│   ├── card_theme.dart               # Card teması (light + dark)
-│   ├── chip_theme.dart               # Chip teması
-│   ├── input_theme.dart              # Input decoration teması
-│   ├── slider_theme.dart             # Slider teması
-│   └── text_theme.dart               # Text teması (Poppins display + Inter body)
+│   ├── text_theme.dart          # _buildTextTheme({fontFamily}) — Poppins + Inter
+│   └── ...                      # appbar/button/card/chip/input/slider/switch
 ├── state/
-│   ├── theme_cubit.dart              # ThemeCubit — variant + themeMode yönetimi
-│   └── theme_state.dart              # ThemeState — immutable state sınıfı
+│   ├── theme_cubit.dart         # ThemeCubit — tüm tema setter'ları
+│   └── theme_state.dart         # ThemeState — zengin durum + spec/previewColor
 └── widget/
-    ├── theme_selection_dialog.dart    # Tema seçim dialog'u (variant grid + mode seçici)
-    └── theme_setting_tile.dart       # Ayarlarda tema tile'ı
+    └── theme_setting_tile.dart  # Büyük gradient tile (tam sayfayı açar)
 ```
 
-## Mevcut Varyantlar
+Tam sayfa seçim UI'ı **feature** tarafındadır:
+`lib/feature/settings/theme_selection/` (bkz. `theme_selection.md`).
 
-| Variant | Renk | Hex |
-|---------|------|-----|
-| Purple | Mor | `#7C4DFF` |
-| Blue | Mavi | `#2196F3` |
-| Green | Yeşil | `#4CAF50` |
-| Orange | Turuncu | `#FF9800` |
-| Red | Kırmızı | `#E91E63` |
-| Black | Siyah | `#212121` |
-| Teal | Turkuaz | `#009688` |
-| Indigo | İndigo | `#3F51B5` |
+## Mevcut Temalar
+
+**Seed renkler (8):** Purple `#7C4DFF`, Blue `#2196F3`, Green `#4CAF50`,
+Orange `#FF9800`, Red `#E91E63`, Black `#212121`, Teal `#009688`, Indigo `#3F51B5`.
+
+**Nötr / özel:** Monochrome (gri, `dynamicSchemeVariant.monochrome`),
+AMOLED (dark'ta saf siyah surface), Custom (kullanıcı seed'i).
+
+**Presetler:** Minimal (mono+light), Ocean (blue+system), Sunset (orange+dark),
+AMOLED (amoled+dark).
 
 ## Tema Modu Seçenekleri
 
@@ -106,7 +128,11 @@ lib/product/theme/
 
 ## Typography (TextTheme)
 
-Projede inline `TextStyle(fontSize: ...)` kullanılmaz. Tüm metin stilleri `text_theme.dart`'tan gelir ve `Theme.of(context).textTheme.*` ile erişilir.
+Tüm metin stilleri `_buildTextTheme({String? fontFamily})`'den gelir ve
+`Theme.of(context).textTheme.*` ile erişilir. Varsayılan: Poppins (display/headline)
++ Inter (title/label/body). `fontFamily` verildiğinde tüm stiller `.apply()` ile
+tek seferde override edilir — bu, tema spec'lerinin kendi tipografisini sağlamasına
+olanak tanır (v3 hacker/terminal monospace bu mekanizmayı kullanacak).
 
 | Stil | Font | Boyut | Ağırlık | Kullanım |
 |------|------|-------|---------|----------|
@@ -120,106 +146,61 @@ Projede inline `TextStyle(fontSize: ...)` kullanılmaz. Tüm metin stilleri `tex
 | `titleMedium` | Inter | 16 | w500 | Buton label'ları, dialog başlıkları |
 | `titleSmall` | Inter | 14 | w500 | Küçük başlıklar |
 | `labelLarge` | Inter | 14 | w500 | Tab/segment label'ları |
-| `labelMedium` | Inter | 12 | w500 | Section başlıkları, küçük label'lar |
+| `labelMedium` | Inter | 12 | w500 | Section başlıkları |
 | `labelSmall` | Inter | 11 | w500 | Chip/badge metinleri |
 | `bodyLarge` | Inter | 16 | w400 | Ana içerik metni |
 | `bodyMedium` | Inter | 14 | w400 | Genel metin, açıklama |
-| `bodySmall` | Inter | 12 | w400 | Yardımcı metin, alt bilgi |
+| `bodySmall` | Inter | 12 | w400 | Yardımcı metin |
 
 ### Kullanım
 
 ```dart
-// Doğru — TextTheme'den al
 Text('Başlık', style: Theme.of(context).textTheme.headlineSmall)
-
-// Özelleştirme gerekiyorsa copyWith kullan
-Text(
-  'Başlık',
-  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-    fontWeight: FontWeight.bold,
-    color: cs.onSurface,
-  ),
-)
-
 // Yanlış — inline fontSize kullanma
-Text('Başlık', style: TextStyle(fontSize: 24))
 ```
 
 ## Semantik Renkler (AppThemeColors)
 
 `ThemeExtension` ile variant'tan bağımsız, dark/light moda duyarlı semantik renkler.
-Dark modda pastel/yumuşak, light modda canlı/doygun tonlar. Geçişlerde `lerp()` ile smooth interpolasyon.
+Geçişlerde `lerp()` ile smooth interpolasyon.
 
-| Renk | Kullanım | Light | Dark |
-|------|----------|-------|------|
-| `scoreGold` | Altın skor rengi | `#FFD700` | `#FFE066` |
-| `scoreRed` | Kırmızı skor rengi | `#FF4757` | `#FF6B81` |
-| `scoreGreen` | Yeşil skor rengi | `#2ED573` | `#7BED9F` |
-| `scoreBlue` | Mavi skor rengi | `#1E90FF` | `#70A1FF` |
-| `scorePink` | Pembe skor rengi | `#FF6B81` | `#FF8FA3` |
-| `toggleActive` | Aktif toggle rengi | `#2ED573` | `#7BED9F` |
-| `toggleInactive` | Pasif toggle rengi | `#EF5350` | `#FF8A80` |
-
-### Erişim
+| Renk | Light | Dark |
+|------|-------|------|
+| `scoreGold` | `#FFD700` | `#FFE066` |
+| `scoreRed` | `#FF4757` | `#FF6B81` |
+| `scoreGreen` | `#2ED573` | `#7BED9F` |
+| `scoreBlue` | `#1E90FF` | `#70A1FF` |
+| `scorePink` | `#FF6B81` | `#FF8FA3` |
+| `toggleActive` | `#2ED573` | `#7BED9F` |
+| `toggleInactive` | `#EF5350` | `#FF8A80` |
 
 ```dart
-import 'package:akillisletme/product/theme/app_theme_colors.dart';
-
-// Kısa erişim (önerilen)
-context.appColors.scoreGold
-context.appColors.toggleActive
-
-// Uzun erişim (aynı sonuç)
-Theme.of(context).extension<AppThemeColors>()!.scoreGold
+context.appColors.scoreGold        // kısa erişim (önerilen)
 ```
 
-## UI Bileşenleri
+## Yeni Seed Variant Ekleme
 
-### ThemeSelectionDialog
-
-`ThemeSelectionDialog.show(context)` ile açılır. İçerir:
-- **Variant grid** — `Wrap` layout, renkli daire + label, seçili olana check icon + border
-- **ThemeMode seçici** — `SegmentedButton` ile System / Light / Dark (sadece text, icon yok)
-- Seçim yapıldığında dialog açık kalır, OK butonu ile kapanır
-
-### ThemeSettingTile
-
-Ayarlar sayfasında kullanılan büyük tile widget'ı. Gradient arka plan ile variant rengi ve label gösterir. Tıklanınca `ThemeSelectionDialog` açılır.
-
-### ThemeTile
-
-Settings sayfasındaki compact ListTile versiyonu. `LocaleKeys.settings_theme` kullanır. Sağ tarafında variant renk dairesi gösterir.
-
-## Yeni Variant Ekleme
-
-1. `app_theme_variant.dart`'taki enum'a yeni değer ekle:
-   ```dart
-   cyan(
-     key: 'cyan',
-     label: 'Cyan',
-     seedColor: Color(0xFF00BCD4),
-     previewColor: Color(0xFF00BCD4),
-   ),
-   ```
-2. Bu kadar — `ColorScheme.fromSeed()` tüm dark/light renkleri otomatik üretir, dialog `Wrap` kullandığı için yeni variant otomatik görünür.
+1. `app_theme_variant.dart` enum'una yeni değer ekle (`key`, `label`, `seedColor`, `previewColor`).
+2. `app_theme_option.dart`'taki `_seedLabelKey` switch'ine yeni case + ilgili
+   `theme.name.<x>` çeviri anahtarını ekle.
+3. Bu kadar — katalog/grid otomatik günceller, `ColorScheme.fromSeed` paleti üretir.
 
 ## Localization
 
-Tema ile ilgili tüm string'ler `assets/translations/` altındaki JSON dosyalarında tanımlıdır:
+Tema string'leri `assets/translations/*.json` içindeki `theme.*` ve `settings.*`
+bloklarında. Değişiklik sonrası `locale_keys.g.dart` yeniden üretilmeli:
 
-| Key | TR | EN |
-|-----|----|----|
-| `settings.theme` | Tema | Theme |
-| `settings.chooseTheme` | Tema Seçin | Choose Theme |
-| `settings.themeMode` | Tema Modu | Theme Mode |
-| `settings.themeModeSystem` | Sistem | System |
-| `settings.themeModeLight` | Açık | Light |
-| `settings.themeModeDark` | Koyu | Dark |
-| `settings.appTheme` | Uygulama Teması | App Theme |
+```bash
+dart run easy_localization:generate -S assets/translations -s en.json \
+  -O lib/product/init/language -o locale_keys.g.dart -f keys
+```
+
+> Not: `-s en.json` zorunlu — `en.json` tam anahtar setine sahip referans dosyadır.
 
 ## Kurallar
 
-- **Inline `TextStyle(fontSize: ...)` kullanma** — her zaman `Theme.of(context).textTheme.*` kullan
-- **Inline renk kullanma** — semantik renkler için `context.appColors.*`, tema renkleri için `Theme.of(context).colorScheme.*`
-- **Yeni semantik renk** eklenecekse `AppThemeColors`'a hem `light` hem `dark` sete ekle
-- **Persistence** her zaman string key ile yapılır (int index kullanma)
+- **Inline `TextStyle(fontSize:)` / inline renk kullanma** — `textTheme.*`,
+  `colorScheme.*`, `context.appColors.*` kullan.
+- **Persistence** her zaman string/temel tip key ile (int index değil).
+- **Yeni tema** eklenirken kontrast/erişilebilirlik kontrol et (raw scheme'ler
+  `fromSeed` otomatiğine sahip değil).

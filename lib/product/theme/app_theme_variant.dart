@@ -59,6 +59,9 @@ enum AppThemeVariant {
     required this.previewColor,
   });
 
+  /// Varsayilan tema kimligi (const baglamlarda kullanilir).
+  static const purpleKey = 'purple';
+
   final String key;
   final String label;
   final Color seedColor;

@@ -1,0 +1,8 @@
+Bu projenin tüm AI talimatları AGENTS.md dosyasındadır (tek kaynak).
+
+Kod yazmadan önce AGENTS.md'yi oku ve içindeki yönlendirmeleri takip et:
+- doc/README.md — doc haritası + görev→doc tablosu
+- doc/project.md — proje genel bakışı ve sistemler
+- doc/clean_code.md — her satır kodda geçerli temiz-kod standardı
+
+Bu dosya sadece AGENTS.md'ye yönlendirir; kurallar orada tanımlıdır, burada tekrar edilmez.

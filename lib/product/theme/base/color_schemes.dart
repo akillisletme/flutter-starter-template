@@ -1,4 +1,17 @@
 part of '../theme.dart';
 
-ColorScheme _darkSchemeFor(AppThemeVariant variant) => variant.darkColorScheme;
-ColorScheme _lightSchemeFor(AppThemeVariant variant) => variant.lightColorScheme;
+/// Aktif tema durumuna gore `ColorScheme` cozumler.
+///
+/// Material You acik ve sistem semasi mevcutsa onu, aksi halde tema spec'inin
+/// urettigi semayi dondurur.
+ColorScheme _resolveScheme(
+  ThemeState state,
+  ThemeSpec spec,
+  Brightness brightness,
+  ColorScheme? dynamicScheme,
+) {
+  if (state.useSystemColors && dynamicScheme != null) {
+    return dynamicScheme;
+  }
+  return spec.schemeFor(brightness);
+}

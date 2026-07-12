@@ -60,5 +60,45 @@
     "chooseYourLanguage": "언어를 선택하세요",
     "selectPreferredLanguage": "선호하는 언어를 선택하세요",
     "continueButton": "계속"
+  },
+  "theme": {
+    "title": "맞춤 설정",
+    "preview": "미리보기",
+    "previewHeadline": "나만의 스타일",
+    "previewBody": "앱에서 테마가 어떻게 보이는지 확인하세요.",
+    "previewAction": "버튼",
+    "sectionColors": "색상",
+    "sectionNeutral": "뉴트럴",
+    "pickColor": "색상 선택",
+    "hue": "색조",
+    "saturation": "채도",
+    "brightnessLevel": "밝기",
+    "apply": "적용",
+    "systemColors": "시스템 색상",
+    "systemColorsDesc": "배경화면 색상 사용 (Android 12+)",
+    "contrast": "대비",
+    "contrastStandard": "표준",
+    "contrastHigh": "높음",
+    "mode": "모드",
+    "presets": "프리셋",
+    "name": {
+      "purple": "퍼플",
+      "blue": "블루",
+      "green": "그린",
+      "orange": "오렌지",
+      "red": "레드",
+      "black": "블랙",
+      "teal": "틸",
+      "indigo": "인디고",
+      "monochrome": "모노크롬",
+      "amoled": "AMOLED",
+      "custom": "사용자 지정"
+    },
+    "preset": {
+      "minimal": "미니멀",
+      "ocean": "오션",
+      "sunset": "선셋",
+      "amoled": "AMOLED"
+    }
   }
 }

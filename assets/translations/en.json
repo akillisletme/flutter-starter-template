@@ -87,5 +87,45 @@
     "infoNote": "These modules are written entirely in native Kotlin. No third-party packages required.",
     "notSupportedTitle": "Android Only",
     "notSupportedDesc": "These modules are specific to the Android platform."
+  },
+  "theme": {
+    "title": "Personalize",
+    "preview": "Preview",
+    "previewHeadline": "Make it yours",
+    "previewBody": "See how your theme looks across the app.",
+    "previewAction": "Button",
+    "sectionColors": "Colors",
+    "sectionNeutral": "Neutral",
+    "pickColor": "Pick a color",
+    "hue": "Hue",
+    "saturation": "Saturation",
+    "brightnessLevel": "Brightness",
+    "apply": "Apply",
+    "systemColors": "System colors",
+    "systemColorsDesc": "Use colors from your wallpaper (Android 12+)",
+    "contrast": "Contrast",
+    "contrastStandard": "Standard",
+    "contrastHigh": "High",
+    "mode": "Mode",
+    "presets": "Presets",
+    "name": {
+      "purple": "Purple",
+      "blue": "Blue",
+      "green": "Green",
+      "orange": "Orange",
+      "red": "Red",
+      "black": "Black",
+      "teal": "Teal",
+      "indigo": "Indigo",
+      "monochrome": "Monochrome",
+      "amoled": "AMOLED",
+      "custom": "Custom"
+    },
+    "preset": {
+      "minimal": "Minimal",
+      "ocean": "Ocean",
+      "sunset": "Sunset",
+      "amoled": "AMOLED"
+    }
   }
 }

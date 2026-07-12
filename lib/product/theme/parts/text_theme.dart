@@ -3,7 +3,18 @@ part of '../theme.dart';
 const _fontDisplay = 'Poppins';
 const _fontBody = 'Inter';
 
-TextTheme get _textTheme => const TextTheme(
+/// Uygulamanin tipografi temasi.
+///
+/// Varsayilan olarak Poppins (display/headline) + Inter (govde/etiket) ikilisini
+/// kullanir. [fontFamily] verildiginde (or. hacker/terminal monospace) tum
+/// stillerin font ailesi tek seferde override edilir; boylece tema spec'leri
+/// kendi tipografisini saglayabilir.
+TextTheme _buildTextTheme({String? fontFamily}) {
+  if (fontFamily == null) return _baseTextTheme;
+  return _baseTextTheme.apply(fontFamily: fontFamily);
+}
+
+const TextTheme _baseTextTheme = TextTheme(
   // ── Display ────────────────────────────────────────────────
   displayLarge: TextStyle(
     fontFamily: _fontDisplay,

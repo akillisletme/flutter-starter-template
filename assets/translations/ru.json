@@ -60,5 +60,45 @@
     "chooseYourLanguage": "Выберите ваш язык",
     "selectPreferredLanguage": "Выберите предпочтительный язык",
     "continueButton": "Продолжить"
+  },
+  "theme": {
+    "title": "Персонализация",
+    "preview": "Предпросмотр",
+    "previewHeadline": "Сделайте своим",
+    "previewBody": "Посмотрите, как тема выглядит в приложении.",
+    "previewAction": "Кнопка",
+    "sectionColors": "Цвета",
+    "sectionNeutral": "Нейтральные",
+    "pickColor": "Выберите цвет",
+    "hue": "Оттенок",
+    "saturation": "Насыщенность",
+    "brightnessLevel": "Яркость",
+    "apply": "Применить",
+    "systemColors": "Системные цвета",
+    "systemColorsDesc": "Использовать цвета обоев (Android 12+)",
+    "contrast": "Контраст",
+    "contrastStandard": "Обычный",
+    "contrastHigh": "Высокий",
+    "mode": "Режим",
+    "presets": "Пресеты",
+    "name": {
+      "purple": "Фиолетовый",
+      "blue": "Синий",
+      "green": "Зелёный",
+      "orange": "Оранжевый",
+      "red": "Красный",
+      "black": "Чёрный",
+      "teal": "Бирюзовый",
+      "indigo": "Индиго",
+      "monochrome": "Монохром",
+      "amoled": "AMOLED",
+      "custom": "Свой"
+    },
+    "preset": {
+      "minimal": "Минимал",
+      "ocean": "Океан",
+      "sunset": "Закат",
+      "amoled": "AMOLED"
+    }
   }
 }

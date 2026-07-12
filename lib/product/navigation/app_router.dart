@@ -6,6 +6,7 @@ import 'package:akillisletme/feature/login_process/onboarding/onboarding_view.da
 import 'package:akillisletme/feature/settings/about/about_view.dart';
 import 'package:akillisletme/feature/settings/language_selection/language_selection_view.dart';
 import 'package:akillisletme/feature/settings/settings_view.dart';
+import 'package:akillisletme/feature/settings/theme_selection/theme_selection_view.dart';
 import 'package:akillisletme/product/navigation/route_transitions.dart';
 import 'package:akillisletme/product/service/service_locator.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,7 @@ part 'app_router.g.dart';
       routes: [
         TypedGoRoute<AboutRoute>(path: 'about'),
         TypedGoRoute<LanguageSelectionRoute>(path: 'language'),
+        TypedGoRoute<ThemeSelectionRoute>(path: 'theme'),
       ],
     ),
     TypedGoRoute<MaterialWidgetsRoute>(path: 'material-widgets'),
@@ -69,6 +71,18 @@ class LanguageSelectionRoute extends GoRouteData with $LanguageSelectionRoute {
     return slideRightTransition(
       key: state.pageKey,
       child: const LanguageSelectionView(),
+    );
+  }
+}
+
+class ThemeSelectionRoute extends GoRouteData with $ThemeSelectionRoute {
+  const ThemeSelectionRoute();
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return slideRightTransition(
+      key: state.pageKey,
+      child: const ThemeSelectionView(),
     );
   }
 }

@@ -60,5 +60,45 @@
     "chooseYourLanguage": "अपनी भाषा चुनें",
     "selectPreferredLanguage": "अपनी पसंदीदा भाषा चुनें",
     "continueButton": "जारी रखें"
+  },
+  "theme": {
+    "title": "वैयक्तिकृत करें",
+    "preview": "पूर्वावलोकन",
+    "previewHeadline": "इसे अपना बनाएँ",
+    "previewBody": "देखें कि आपकी थीम ऐप में कैसी दिखती है।",
+    "previewAction": "बटन",
+    "sectionColors": "रंग",
+    "sectionNeutral": "तटस्थ",
+    "pickColor": "रंग चुनें",
+    "hue": "रंगत",
+    "saturation": "संतृप्ति",
+    "brightnessLevel": "चमक",
+    "apply": "लागू करें",
+    "systemColors": "सिस्टम रंग",
+    "systemColorsDesc": "वॉलपेपर के रंग इस्तेमाल करें (Android 12+)",
+    "contrast": "कंट्रास्ट",
+    "contrastStandard": "मानक",
+    "contrastHigh": "उच्च",
+    "mode": "मोड",
+    "presets": "प्रीसेट",
+    "name": {
+      "purple": "बैंगनी",
+      "blue": "नीला",
+      "green": "हरा",
+      "orange": "नारंगी",
+      "red": "लाल",
+      "black": "काला",
+      "teal": "टील",
+      "indigo": "नील",
+      "monochrome": "मोनोक्रोम",
+      "amoled": "AMOLED",
+      "custom": "कस्टम"
+    },
+    "preset": {
+      "minimal": "मिनिमल",
+      "ocean": "महासागर",
+      "sunset": "सूर्यास्त",
+      "amoled": "AMOLED"
+    }
   }
 }

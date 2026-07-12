@@ -60,5 +60,45 @@
     "chooseYourLanguage": "言語を選択してください",
     "selectPreferredLanguage": "お好みの言語を選択してください",
     "continueButton": "続ける"
+  },
+  "theme": {
+    "title": "パーソナライズ",
+    "preview": "プレビュー",
+    "previewHeadline": "自分らしく",
+    "previewBody": "アプリでテーマの見え方を確認できます。",
+    "previewAction": "ボタン",
+    "sectionColors": "カラー",
+    "sectionNeutral": "ニュートラル",
+    "pickColor": "色を選ぶ",
+    "hue": "色相",
+    "saturation": "彩度",
+    "brightnessLevel": "明るさ",
+    "apply": "適用",
+    "systemColors": "システムカラー",
+    "systemColorsDesc": "壁紙の色を使用（Android 12以降）",
+    "contrast": "コントラスト",
+    "contrastStandard": "標準",
+    "contrastHigh": "高",
+    "mode": "モード",
+    "presets": "プリセット",
+    "name": {
+      "purple": "パープル",
+      "blue": "ブルー",
+      "green": "グリーン",
+      "orange": "オレンジ",
+      "red": "レッド",
+      "black": "ブラック",
+      "teal": "ティール",
+      "indigo": "インディゴ",
+      "monochrome": "モノクロ",
+      "amoled": "AMOLED",
+      "custom": "カスタム"
+    },
+    "preset": {
+      "minimal": "ミニマル",
+      "ocean": "オーシャン",
+      "sunset": "サンセット",
+      "amoled": "AMOLED"
+    }
   }
 }

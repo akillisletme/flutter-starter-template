@@ -60,5 +60,45 @@
     "chooseYourLanguage": "اختر لغتك",
     "selectPreferredLanguage": "اختر لغتك المفضلة",
     "continueButton": "متابعة"
+  },
+  "theme": {
+    "title": "تخصيص",
+    "preview": "معاينة",
+    "previewHeadline": "اجعله خاصًا بك",
+    "previewBody": "شاهد كيف يبدو مظهرك في التطبيق.",
+    "previewAction": "زر",
+    "sectionColors": "الألوان",
+    "sectionNeutral": "محايد",
+    "pickColor": "اختر لونًا",
+    "hue": "تدرج اللون",
+    "saturation": "التشبع",
+    "brightnessLevel": "السطوع",
+    "apply": "تطبيق",
+    "systemColors": "ألوان النظام",
+    "systemColorsDesc": "استخدام ألوان خلفية الشاشة (أندرويد 12+)",
+    "contrast": "التباين",
+    "contrastStandard": "قياسي",
+    "contrastHigh": "عالٍ",
+    "mode": "الوضع",
+    "presets": "إعدادات جاهزة",
+    "name": {
+      "purple": "بنفسجي",
+      "blue": "أزرق",
+      "green": "أخضر",
+      "orange": "برتقالي",
+      "red": "أحمر",
+      "black": "أسود",
+      "teal": "أزرق مخضر",
+      "indigo": "نيلي",
+      "monochrome": "أحادي اللون",
+      "amoled": "AMOLED",
+      "custom": "مخصص"
+    },
+    "preset": {
+      "minimal": "بسيط",
+      "ocean": "محيط",
+      "sunset": "غروب",
+      "amoled": "AMOLED"
+    }
   }
 }

@@ -9,7 +9,7 @@ It explains what the project is, how it works, and where to find other documenta
 
 If you just cloned this project from GitHub, follow this guide first:
 
-→ **[setup_after_clone.md](new_feature/setup_after_clone.md)** — Clean generated files, install dependencies, code-gen, Firebase question, and error analysis steps.
+→ **[setup/setup_after_clone.md](setup/setup_after_clone.md)** — Clean generated files, install dependencies, code-gen, Firebase question, and error analysis steps.
 
 Come back to this file after setup is complete.
 
@@ -35,23 +35,31 @@ Includes theming, caching, navigation, localization, state management, service i
 
 ```
 doc/
+├── README.md                              # doc map + task→doc table + checklist (AI start here)
 ├── project.md                             # ← THIS FILE (project guide)
-└── new_feature/                           # All guide documents
-    ├── README.md                          # New feature checklist + navigation
-    ├── setup_after_clone.md               # Post-clone setup (Claude Code instructions)
-    ├── firebase_commented_out.md          # Firebase activation guide
-    ├── folder_structure.md                # Feature folder structure
-    ├── model_rules.md                     # Model creation rules
-    ├── state_management.md                # Cubit + Freezed rules
-    ├── view_rules.md                      # View structure rules
-    ├── service_rules.md                   # Service placement rules
-    ├── service_initialization.md          # Locator + init flow
-    ├── data_storage.md                    # Cache/storage decision tree
-    ├── route_and_strings.md               # Route + string addition
-    ├── widget_and_theme.md                # Widget + theme rules
-    ├── enums_and_constants.md             # Enum + constant rules
-    ├── assets_and_flutter_gen.md          # FlutterGen asset addition
-    └── settings_and_urls.md               # Store URLs + contact info
+├── clean_code.md                          # Portable clean-code standard (every line of code)
+├── guides/                                # Ongoing dev task guides
+│   ├── folder_structure.md                # Feature folder structure
+│   ├── model_rules.md                     # Model creation rules
+│   ├── state_management.md                # Cubit + Freezed rules
+│   ├── view_rules.md                      # View structure rules
+│   ├── service_rules.md                   # Service placement rules
+│   ├── service_initialization.md          # Locator + init flow
+│   ├── data_storage.md                    # Cache/storage decision tree
+│   ├── route_and_strings.md               # Route + string addition
+│   ├── widget_and_theme.md                # Widget + theme rules
+│   ├── enums_and_constants.md             # Enum + constant rules
+│   └── assets_and_flutter_gen.md          # FlutterGen asset addition
+├── setup/                                 # Cloner: one-time setup + customization
+│   ├── setup_after_clone.md               # Post-clone setup
+│   ├── customization.md                   # New-project customization + Android module questions
+│   ├── firebase.md                        # Firebase activation guide
+│   ├── native_splash.md                   # Native splash config
+│   └── settings_and_urls.md               # Store URLs + contact info
+├── troubleshooting/                       # Environment issues
+│   └── emulator.md                        # Android emulator troubleshooting
+└── ideas/                                 # Plans, roadmap, ideas
+    └── theme-personalization.md
 
 lib/
 ├── main.dart                              # App entry point
@@ -148,7 +156,7 @@ Type-safe GoRouter with `go_router_builder` code-gen.
 | OnboardingRoute | `/onboarding` | fade |
 
 - **Location:** `lib/product/navigation/app_router.dart`
-- **Details:** `doc/new_feature/route_and_strings.md`
+- **Details:** `doc/guides/route_and_strings.md`
 
 ### 4. Localization (i18n)
 
@@ -166,7 +174,7 @@ flutter_bloc + Freezed.
 - **App-wide:** `lib/product/state/` (e.g. ThemeCubit)
 - **Feature-level:** `lib/feature/<feature>/state/`
 - **Provider registration:** `lib/product/init/state_initialize.dart`
-- **Details:** `doc/new_feature/state_management.md`
+- **Details:** `doc/guides/state_management.md`
 
 ### 6. Dependency Injection
 
@@ -174,7 +182,7 @@ GetIt singleton service management.
 
 - **Location:** `lib/product/service/service_locator.dart`
 - **Access:** `locator.sharedCache`, `locator.productCache`
-- **Details:** `doc/new_feature/service_initialization.md`
+- **Details:** `doc/guides/service_initialization.md`
 
 ### 7. Onboarding
 
@@ -207,7 +215,7 @@ Assets.lottie.backroundAnimation.lottie() // Lottie
 FontFamily.poppins                        // Font
 ```
 
-- **Details:** `doc/new_feature/assets_and_flutter_gen.md`
+- **Details:** `doc/guides/assets_and_flutter_gen.md`
 
 ### 11. AppPaddings
 
@@ -268,45 +276,13 @@ SYSTEM_ALERT_WINDOW, FOREGROUND_SERVICE, FOREGROUND_SERVICE_SPECIAL_USE
 
 ---
 
-> ### 🤖 Claude Code — Android Modülleri Kurulum Soruları
+> ### 🤖 Android modülleri — kurulum soruları (cloner)
 >
-> Bu repo klonlandığında ve kullanıcı geliştirmeye başlamadan önce,
-> aşağıdaki soruları kullanıcıya sor. Varsayılanları belirt ve
-> kullanıcının kendi projesine göre özelleştirmesine yardımcı ol.
+> Template klonlanıp kendi projeye uyarlanırken, widget ve overlay'i kendi veri
+> modeline göre ayarlamak için 7 kurulum sorusu sorulur (veri tipi, widget/overlay
+> başlığı, bildirim metni, MethodChannel adları, buton seti, demo sayfası).
 >
-> **Soru 1 — Veri tipi**
-> Sayaç (Int) yerine ne saklamak istiyorsun?
-> - Cevaba göre `SharedPreferences` key'ini, `MethodChannel` metodlarını ve widget/overlay layout metin alanlarını güncelle.
-> - Varsayılan: `"counter"` (Int)
->
-> **Soru 2 — Widget başlığı**
-> Ana ekran widget'ının başlık metni ne olsun?
-> - `res/layout/widget_home.xml` → `tv_widget_title` TextView'ının `android:text` alanını güncelle.
-> - Varsayılan: `"Sayaç"`
->
-> **Soru 3 — Overlay başlığı**
-> Yüzen penceredeki başlık metni ne olsun?
-> - `res/layout/overlay_window.xml` → ilk `TextView`'ın `android:text` alanını güncelle.
-> - Varsayılan: `"Sayaç"`
->
-> **Soru 4 — Bildirim metni**
-> Yüzen pencere arka planda çalışırken gösterilen bildirim metni ne olsun?
-> - `OverlayService.kt` → `buildNotification()` içindeki `setContentTitle(...)` değerini güncelle.
-> - Varsayılan: `"Uygulama arka planda çalışıyor"`
->
-> **Soru 5 — MethodChannel adları**
-> Flutter–Kotlin arasındaki channel adlarını değiştirmek istiyor musun?
-> - `MainActivity.kt`'deki `OVERLAY_CHANNEL` ve `COUNTER_CHANNEL` sabitlerini ve Flutter tarafındaki `MethodChannel(...)` çağrılarını (`android_modules_view.dart`) güncelle.
-> - Varsayılan: `"counter"`, `"overlay_permission"`
->
-> **Soru 6 — Overlay butonları**
-> Yüzen penceredeki buton seti yeterli mi, yoksa buton eklemek/çıkarmak istiyor musun?
-> - `res/layout/overlay_window.xml` layout + `OverlayService.kt` → `bindViews()` metodunu güncelle.
-> - Varsayılan: `−`, `Sıfırla`, `+`, `↗ (uygulamayı aç)`, `✕ (kapat)`
->
-> **Soru 7 — Demo sayfası**
-> `android_modules_view.dart` sadece bir demo/izin sayfasıdır. Bu sayfayı kendi UI'ına dönüştürmek mi istiyorsun, yoksa kaldırmak mı?
-> - Kaldırılırsa: `app_router.dart`'tan `AndroidModulesRoute`'u ve `home_view.dart`'tan ilgili butonu da sil.
+> Tam liste ve varsayılanlar: **[setup/customization.md](setup/customization.md)**.
 
 ---
 
@@ -314,7 +290,7 @@ SYSTEM_ALERT_WINDOW, FOREGROUND_SERVICE, FOREGROUND_SERVICE_SPECIAL_USE
 
 Firebase Remote Config integration is ready but commented out. To activate:
 
-→ **[firebase_commented_out.md](new_feature/firebase_commented_out.md)**
+→ **[setup/firebase.md](setup/firebase.md)**
 
 ---
 
@@ -353,7 +329,7 @@ Firebase Remote Config integration is ready but commented out. To activate:
 
 To find which file to read when adding a new feature:
 
-→ **[doc/new_feature/README.md](new_feature/README.md)** — Task-based navigation table + 24-item checklist
+→ **[doc/README.md](README.md)** — Task-based navigation table + checklist
 
 ### Inline guides (inside code)
 
@@ -367,18 +343,9 @@ To find which file to read when adding a new feature:
 
 ## New Project Setup (Customization)
 
-After post-clone setup (`setup_after_clone.md`) is complete:
+Template'i kendi projene uyarlamanın tüm adımları (paket adı, çeviriler, store URL'leri, tema varyantları, Android modül soruları) tek yerde:
 
-1. Change `name` field in `pubspec.yaml`
-2. Update package name across the project (`akillisletme` → new name)
-3. Update strings in `assets/translations/`
-4. Fill store URLs in `AppString`
-5. Change or customize the animation text in `home_background.dart`
-6. Remove unneeded color variants from `app_theme_variant.dart`
-7. Update onboarding step contents
-8. **Android native modules** — answer the 7 setup questions above (§15–16) to adapt the widget and overlay to your data model
-9. Run `flutter pub get && dart run build_runner build --delete-conflicting-outputs`
-10. Follow the checklist in `doc/new_feature/README.md` to start adding features
+→ **[setup/customization.md](setup/customization.md)**
 
 ---
 

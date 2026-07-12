@@ -1,10 +1,10 @@
 part of '../theme.dart';
 
-ThemeData _buildDarkTheme(ColorScheme cs) => ThemeData(
+ThemeData _buildDarkTheme(ColorScheme cs, {String? fontFamily}) => ThemeData(
       useMaterial3: true,
       brightness: Brightness.dark,
       colorScheme: cs,
-      textTheme: _textTheme,
+      textTheme: _buildTextTheme(fontFamily: fontFamily),
       scaffoldBackgroundColor: Colors.transparent,
       appBarTheme: _appBarTheme,
       cardTheme: _darkCardTheme,
