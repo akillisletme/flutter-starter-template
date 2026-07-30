@@ -50,8 +50,14 @@ Veri çeken her ekran dört durumu ele alır: **loading**, **error** (anlamlı m
 
 Her görev şununla kapanır:
 
-1. `dart format .`
-2. `flutter analyze` — sıfır uyarı. `// ignore:` ile susturma yok; çözemiyorsan sor.
-3. Codegen gerekiyorsa `dart run build_runner build --delete-conflicting-outputs` çalıştırıldı mı doğrula.
-4. Yeni ekranlarda dört durum (loading/error/empty/data) ele alındı mı doğrula.
-5. `flutter test` — ilgili testleri çalıştır; kırmızı (başarısız) test bırakma.
+```bash
+./script/verify.sh      # dart format → flutter analyze → flutter test
+```
+
+Ek olarak elle doğrula:
+
+1. Codegen gerekiyorsa `./script/codegen.sh` çalıştırıldı mı.
+2. Çeviri anahtarı eklendiyse `./script/lang.sh` çalıştırıldı mı (ve anahtar **hem** `tr.json` **hem** `en.json`'da mı).
+3. Yeni ekranlarda dört durum (loading/error/empty/data) ele alındı mı — `doc/guides/ui_states.md`.
+4. `flutter analyze` sıfır uyarı verdi mi. `// ignore:` ile susturma yok; çözemiyorsan sor.
+5. Kırmızı test bırakılmadı mı.

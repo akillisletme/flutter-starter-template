@@ -25,6 +25,15 @@ Step 6: flutter pub get (again)
 Step 7: flutter analyze + fix errors
 ```
 
+> **Shortcut:** if Firebase is not needed, steps 2, 4, 5 and 6 are a single command:
+>
+> ```bash
+> ./script/deep_clean.sh   # cleans generated files, then runs pub get + codegen + lang
+> ```
+>
+> Then jump to Step 7 (`./script/verify.sh`). The manual steps below stay as the
+> reference for what each command does and for the Firebase branch.
+
 ---
 
 ## Step 1: Clean Old Generated Files
@@ -65,7 +74,7 @@ Ask the user:
 
 ## Step 3a: Activate Firebase Integration
 
-Read the `doc/setup/firebase.md` file. It describes which files have which lines
+Read the `doc/firebase.md` file. It describes which files have which lines
 commented out. Remove all comment markers tagged with `// TODO: Firebase kurulduktan sonra`
 and activate the original code.
 
@@ -135,11 +144,16 @@ dart run build_runner build --delete-conflicting-outputs
 Generate the type-safe `LocaleKeys` class from translation files.
 
 ```bash
-flutter pub run easy_localization:generate -O lib/product/init/language -f keys -o locale_keys.g.dart --source-dir assets/translations
+./script/lang.sh
 ```
 
 **Input:** `assets/translations/tr.json` and `en.json`
 **Output:** `lib/product/init/language/locale_keys.g.dart`
+
+> Do not run the underlying `easy_localization:generate` command by hand. It needs
+> `-s en.json`; without it the source file defaults to the alphabetically first one
+> (`tr.json`) and any key present in only one language is dropped from the generated
+> class — silently, with no error.
 
 ---
 
@@ -156,7 +170,7 @@ flutter pub get
 ## Step 7: Error Analysis and Fixing
 
 ```bash
-flutter analyze
+./script/verify.sh    # dart format → flutter analyze → flutter test
 ```
 
 ### Rules
@@ -181,4 +195,4 @@ flutter analyze
 ## Project Customization
 
 After setup is complete, follow the customization checklist in
-`doc/project.md` under the **"New Project Setup (Customization)"** section.
+`doc/guides/project.md` under the **"New Project Setup (Customization)"** section.

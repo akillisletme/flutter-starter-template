@@ -1,5 +1,9 @@
 # CLAUDE.md
 
-Bu projenin tüm AI talimatları tek dosyada tutulur: **[`AGENTS.md`](AGENTS.md)**.
+Tum AI talimatlari: **[`doc/guides/AGENTS.md`](doc/guides/AGENTS.md)**
+Kurulum (klon sonrasi): **[`doc/setup.md`](doc/setup.md)**
 
-Kod yazmadan önce onu oku ve içindeki yönlendirmeleri takip et. Bu dosya sadece pointer'dır; kural tekrar edilmez.
+Kod yazmadan once AGENTS.md'yi oku. Bu dosya yalnizca pointer'dir.
+
+> Kokte durmak zorunda: Claude Code yalnizca kok dizindeki `CLAUDE.md`'yi
+> otomatik yukler.

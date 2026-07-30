@@ -5,7 +5,7 @@
 > (mimari). Bkz. `lib/product/theme/THEME.md` ve feature `theme_selection.md`.
 > **Mevcut altyapı:** `lib/product/theme/` — M3 seed-based, 8 varyant × light/dark,
 > `AppThemeColors` ThemeExtension, `ThemeCubit` (SP'ye kalıcı).
-> **Kaynak:** `fake_gps/doc/ideas/theme-personalization.md` planının bu template'e
+> **Kaynak:** `fake_gps/doc/guides/theme-personalization.md` planının bu template'e
 > (`clean_start`) uyarlanmış hali. Harita stili ve PRO/token narrative'i bu projede
 > yok — ilgili maddeler düşürüldü veya opsiyonel not olarak bırakıldı.
 

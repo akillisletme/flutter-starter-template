@@ -28,24 +28,24 @@ A ready-to-use Flutter boilerplate for starting new projects without setting up 
 
 ## Getting Started
 
-**Working with an AI agent?** Point it at **[`AGENTS.md`](AGENTS.md)** — the canonical instruction file that any AI tool (Claude, Cursor, Copilot, Codex…) reads to understand the project, conventions, and coding standards. `CLAUDE.md` and `.cursorrules` are thin pointers to it.
+**Working with an AI agent?** Point it at **[`AGENTS.md`](doc/guides/AGENTS.md)** — the canonical instruction file that any AI tool (Claude, Cursor, Copilot, Codex…) reads to understand the project, conventions, and coding standards. `CLAUDE.md` and `.cursorrules` are thin pointers to it.
 
-After cloning, see **[`doc/project.md`](doc/project.md)** — the main project guide. It covers everything you need to get started.
+After cloning, see **[`doc/guides/project.md`](doc/guides/project.md)** — the main project guide. It covers everything you need to get started.
 
-If this is a fresh clone, follow **[`doc/setup/setup_after_clone.md`](doc/setup/setup_after_clone.md)** first to clean generated files, install dependencies, and run code generation.
+If this is a fresh clone, follow **[`doc/guides/setup_after_clone.md`](doc/guides/setup_after_clone.md)** first to clean generated files, install dependencies, and run code generation.
 
 ## Documentation
 
-The `doc/` directory is the built-in knowledge base for this project. Start at **[`doc/README.md`](doc/README.md)** for the doc map and task→doc routing table. Instead of memorizing conventions, read the relevant file.
+The `doc/` directory is the built-in knowledge base for this project. Start at **[`doc/guides/README.md`](doc/guides/README.md)** for the doc map and task→doc routing table. Instead of memorizing conventions, read the relevant file.
 
 | File | What it covers |
 |------|----------------|
-| [`doc/README.md`](doc/README.md) | Doc map + task→doc table + new-feature checklist |
-| [`doc/project.md`](doc/project.md) | Project overview, architecture, all built-in systems |
-| [`doc/clean_code.md`](doc/clean_code.md) | Portable clean-code standard (applies to every line of code) |
-| [`doc/guides/`](doc/guides/) | Ongoing dev task guides (feature, state, service, model, routing…) |
-| [`doc/setup/`](doc/setup/) | Cloner: post-clone setup, customization, Firebase, native splash |
-| [`doc/troubleshooting/`](doc/troubleshooting/) | Environment issues (emulator) |
+| [`doc/guides/README.md`](doc/guides/README.md) | Doc map + task→doc table + new-feature checklist |
+| [`doc/guides/project.md`](doc/guides/project.md) | Project overview, architecture, all built-in systems |
+| [`doc/guides/clean_code.md`](doc/guides/clean_code.md) | Portable clean-code standard (applies to every line of code) |
+| [`doc/`](doc/) | Ongoing dev task guides (feature, state, service, model, routing…) |
+| [`doc/`](doc/) | Cloner: post-clone setup, customization, Firebase, native splash |
+| [`doc/`](doc/) | Environment issues (emulator) |
 
 ## Credits
 

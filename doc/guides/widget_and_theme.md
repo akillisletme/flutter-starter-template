@@ -75,8 +75,14 @@ context.appColors.toggleActive
 | `AppPrimaryButton` | `product/widget/` | Primary action button (FilledButton, haptic feedback) |
 | `AppSecondaryButton` | `product/widget/` | Secondary action button (OutlinedButton, haptic feedback) |
 | `AppTextButton` | `product/widget/` | Light text button (TextButton, haptic feedback) |
+| `AppScaffold` | `product/widget/` | Page shell — padding + SafeArea + keyboard dismiss |
+| `AppTextField` | `product/widget/` | Typed input, see [forms_and_validation.md](forms_and_validation.md) |
+| `KeyboardDismisser` | `product/widget/` | Tap outside to close the keyboard |
+| `AppSemantics` | `product/widget/` | UI-test identifier, see [testing.md](testing.md) |
+| `AppStateView` and friends | `product/widget/state/` | Four screen states, see [ui_states.md](ui_states.md) |
+| `AppSelectSheet` | `product/widget/sheet/` | Generic single-select bottom sheet |
+| `AppErrorSheet` | `product/widget/sheet/` | Blocking error + retry sheet |
 | `ThemeSettingTile` | `product/theme/widget/` | Theme selection tile (gradient card) |
-| `ThemeSelectionDialog` | `product/theme/widget/` | Theme selection dialog (Wrap grid + ThemeMode selector) |
 | `SettingsSection` | `feature/settings/widget/` | Settings group card |
 | `BackgroundAnimationTile` | `feature/settings/widget/` | Background animation on/off switch |
 

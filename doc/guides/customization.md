@@ -13,8 +13,10 @@ Post-clone kurulum bittikten sonra template'i kendi projene çevirmek için:
 6. `app_theme_variant.dart` içinden gereksiz renk varyantlarını çıkar.
 7. Onboarding adım içeriklerini güncelle.
 8. **Android native modülleri** — aşağıdaki 7 kurulum sorusunu yanıtlayarak widget ve overlay'i kendi veri modeline uyarla.
-9. `flutter pub get && dart run build_runner build --delete-conflicting-outputs` çalıştır.
-10. Feature eklemeye başlamak için [`../README.md`](../README.md) checklist'ini takip et.
+9. `AppSemanticKeys` içindeki test kimliklerini kendi ekranlarına göre güncelle (`lib/product/const/app_semantic_keys.dart`).
+10. İstersen `.claude/skills/starter-*` ve `.claude/agents/starter-*` isimlerindeki `starter-` önekini kendi proje adınla değiştir (`doc/guides/AGENTS.md` → "Skill'ler" tablosunu da güncelle).
+11. `./script/general.sh` çalıştır.
+12. Feature eklemeye başlamak için [`README.md`](README.md) checklist'ini takip et.
 
 ---
 

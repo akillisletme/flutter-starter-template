@@ -9,7 +9,7 @@ It explains what the project is, how it works, and where to find other documenta
 
 If you just cloned this project from GitHub, follow this guide first:
 
-→ **[setup/setup_after_clone.md](setup/setup_after_clone.md)** — Clean generated files, install dependencies, code-gen, Firebase question, and error analysis steps.
+→ **[../setup.md](../setup.md)** — Clean generated files, install dependencies, code-gen, Firebase question, and error analysis steps.
 
 Come back to this file after setup is complete.
 
@@ -34,32 +34,28 @@ Includes theming, caching, navigation, localization, state management, service i
 ## Project Structure
 
 ```
-doc/
-├── README.md                              # doc map + task→doc table + checklist (AI start here)
-├── project.md                             # ← THIS FILE (project guide)
-├── clean_code.md                          # Portable clean-code standard (every line of code)
-├── guides/                                # Ongoing dev task guides
-│   ├── folder_structure.md                # Feature folder structure
-│   ├── model_rules.md                     # Model creation rules
-│   ├── state_management.md                # Cubit + Freezed rules
-│   ├── view_rules.md                      # View structure rules
-│   ├── service_rules.md                   # Service placement rules
-│   ├── service_initialization.md          # Locator + init flow
-│   ├── data_storage.md                    # Cache/storage decision tree
-│   ├── route_and_strings.md               # Route + string addition
-│   ├── widget_and_theme.md                # Widget + theme rules
-│   ├── enums_and_constants.md             # Enum + constant rules
-│   └── assets_and_flutter_gen.md          # FlutterGen asset addition
-├── setup/                                 # Cloner: one-time setup + customization
-│   ├── setup_after_clone.md               # Post-clone setup
-│   ├── customization.md                   # New-project customization + Android module questions
-│   ├── firebase.md                        # Firebase activation guide
-│   ├── native_splash.md                   # Native splash config
-│   └── settings_and_urls.md               # Store URLs + contact info
-├── troubleshooting/                       # Environment issues
-│   └── emulator.md                        # Android emulator troubleshooting
-└── ideas/                                 # Plans, roadmap, ideas
-    └── theme-personalization.md
+build.yaml                                 # Codegen scope (per-builder generate_for)
+script/                                    # general, codegen, lang, verify, deep_clean
+.github/workflows/analyze.yml              # CI: pub get → codegen → format → analyze → test
+.claude/skills/                            # starter-feature, starter-style-guide, starter-review
+.claude/agents/                            # starter-architecture-reviewer
+
+SETUP.md                                   # Kurulum giris noktasi (klonlayan buradan baslar)
+
+doc/                                       # Duz — alt klasor yok
+├── AGENTS.md                              # Canonical AI instructions
+├── README.md                              # doc map + task→doc table + checklist
+├── project.md                             # ← THIS FILE
+├── clean_code.md                          # Portable clean-code standard
+├── <konu>.md                              # Gelistirme rehberleri (state_management,
+│                                          #   view_rules, design_tokens, ui_states,
+│                                          #   forms_and_validation, testing, auth, ...)
+└── <konu>_setup.md                        # Kurulum adimlari (auth_setup, payment_setup,
+                                           #   android_signing, customization, ...)
+
+test/
+├── helper/pump_app.dart                   # Shared widget-test setup
+└── product/                               # Mirrors lib/ structure
 
 lib/
 ├── main.dart                              # App entry point
@@ -79,17 +75,21 @@ lib/
 │       └── widget/                        # Theme, language tiles
 └── product/                               # Shared infrastructure layer
     ├── cache/                             # SharedCache + Hive (ProductCache)
-    ├── const/                             # AppString, AppPaddings, RegexTypes
-    ├── init/                              # App init, localization, AppBuilder
+    ├── const/                             # AppString, AppPaddings, AppRadius, AppDurations,
+    │                                      #   AppIconSizes, RegexTypes, AppSemanticKeys
+    ├── enum/                              # ViewState, TextFieldType
+    ├── init/                              # App init, error handler, localization, AppBuilder
     ├── model/                             # Shared immutable data models
     │   └── android_module_info.dart       # AndroidModuleInfo (icon, title, features)
     ├── navigation/                        # GoRouter config + transitions
     ├── service/                           # Services + GetIt DI
-    ├── state/                             # App-wide cubits (ThemeCubit)
-    ├── theme/                             # Material 3 theme (5 variants, dark/light)
+    ├── state/                             # App-wide cubits
+    ├── theme/                             # Material 3 theme (8 variants, dark/light) + AppShadows
     ├── generated/                         # FlutterGen output
-    ├── utils/                             # AppMessenger, responsive, haptics
-    └── widget/                            # Shared buttons
+    ├── utils/                             # AppMessenger, extensions, validators,
+    │                                      #   NetworkChecker, VersionChecker, haptics
+    └── widget/                            # Shared buttons, text field, scaffold,
+                                           #   state views, sheets, semantics
 
 android/app/src/main/
 ├── kotlin/com/cleanstart/akillisletme/
@@ -239,10 +239,54 @@ context.showAppBottomSheet<void>(child: MyWidget());
 
 ### 13. RegexTypes
 
-Validation patterns with Turkish character support: fullName, email, phoneNumber, password, etc.
+Validation patterns with Turkish character support: fullName, email, phoneNumber, password, url, plus text-normalization patterns.
 
 - **File:** `lib/product/const/regex_types.dart`
 - **Usage:** `RegexTypes.email.hasMatch(value)`
+
+### 13a. Screen States (loading / error / empty / data)
+
+`AppStateView` resolves all four states in one place, so no screen re-implements the `if (isLoading) … else if (isError) …` chain.
+
+```dart
+AppStateView(
+  state: ViewState.from(isLoading: …, hasError: …, isEmpty: …),
+  onRetry: cubit.load,
+  loadingPlaceholder: const AppShimmerList(),
+  builder: () => TaskList(tasks: state.tasks),
+)
+```
+
+- **Location:** `lib/product/widget/state/`
+- **Details:** [ui_states.md](ui_states.md)
+
+### 13b. Forms
+
+`AppTextField` derives keyboard type, autofill hints, input filters and length limits from `TextFieldType`; `Validators` supplies localized validation rules.
+
+- **Location:** `lib/product/widget/app_text_field.dart`, `lib/product/utils/validator/`
+- **Details:** [forms_and_validation.md](forms_and_validation.md)
+
+### 13c. Global Error Handling
+
+`AppErrorHandler` wires **both** channels — `FlutterError.onError` (framework) and `PlatformDispatcher.instance.onError` (uncaught async) — plus a guarded zone around `runApp`. Only one of these is not enough: framework-only wiring silently loses async errors.
+
+- **File:** `lib/product/init/app_error_handler.dart`
+- **Crashlytics:** single TODO inside `_report`; call sites never change
+
+### 13d. Startup Checks
+
+`SplashCubit` runs: connectivity → (optional) forced-version → proceed. Each branch is its own state; the view only draws.
+
+- `NetworkChecker` — real DNS probe, no extra package; being on Wi-Fi ≠ having internet
+- `VersionChecker` — segment-wise semver comparison (`1.2.10 < 1.3.0` resolves correctly)
+- `requiresNetwork` defaults to `false` — flip it to `true` once the app fetches at startup
+
+### 14. Firebase (Optional)
+
+Firebase Remote Config integration is ready but commented out. To activate:
+
+→ **[auth_setup.md](auth_setup.md)**
 
 ### 15. Home Screen Widget (Android)
 
@@ -282,15 +326,7 @@ SYSTEM_ALERT_WINDOW, FOREGROUND_SERVICE, FOREGROUND_SERVICE_SPECIAL_USE
 > modeline göre ayarlamak için 7 kurulum sorusu sorulur (veri tipi, widget/overlay
 > başlığı, bildirim metni, MethodChannel adları, buton seti, demo sayfası).
 >
-> Tam liste ve varsayılanlar: **[setup/customization.md](setup/customization.md)**.
-
----
-
-### 14. Firebase (Optional)
-
-Firebase Remote Config integration is ready but commented out. To activate:
-
-→ **[setup/firebase.md](setup/firebase.md)**
+> Tam liste ve varsayılanlar: **[customization.md](customization.md)**.
 
 ---
 
@@ -301,20 +337,48 @@ Firebase Remote Config integration is ready but commented out. To activate:
 | AppPrimaryButton | `product/widget/` | FilledButton |
 | AppSecondaryButton | `product/widget/` | OutlinedButton |
 | AppTextButton | `product/widget/` | TextButton |
+| AppScaffold | `product/widget/` | Padding + SafeArea + keyboard dismiss |
+| AppTextField | `product/widget/` | Typed input (keyboard/autofill/limits from `TextFieldType`) |
+| KeyboardDismisser | `product/widget/` | Tap outside to close keyboard |
+| AppSemantics | `product/widget/` | Stable UI-test identifiers |
+| AppStateView | `product/widget/state/` | loading / error / empty / data switcher |
+| AppLoadingView · AppErrorView · AppEmptyView | `product/widget/state/` | Individual state views |
+| AppShimmer · AppShimmerBox · AppShimmerList | `product/widget/state/` | Skeleton placeholders |
+| AppSelectSheet | `product/widget/sheet/` | Generic single-select bottom sheet |
+| AppErrorSheet | `product/widget/sheet/` | Blocking error + retry sheet |
 | ThemeSettingTile | `product/theme/widget/` | Theme selection tile |
-| ThemeSelectionDialog | `product/theme/widget/` | Theme selection dialog |
 | SettingsSection | `feature/settings/widget/` | Settings group card |
 
 ## Utilities
 
 | Utility | File | Description |
 |---------|------|-------------|
-| AppMessenger | `product/utils/` | SnackBar, Dialog, BottomSheet |
-| AppPaddings | `product/const/` | Padding/spacing constants |
-| RegexTypes | `product/const/` | Validation regex patterns |
-| ResponsiveExtension | `product/utils/` | `context.r(20)`, `context.rf(16)` |
-| ButtonFeedback | `product/utils/` | Haptic + sound feedback |
-| ThemeDecorations | `product/utils/` | Theme-based container decoration |
+| AppMessenger | `product/utils/app_messenger.dart` | SnackBar, Dialog, BottomSheet |
+| Validators / AppValidator | `product/utils/validator/` | Form validation rules |
+| NetworkChecker | `product/utils/network_checker.dart` | Real connectivity probe (no package) |
+| VersionChecker | `product/utils/version_checker.dart` | Semantic version comparison |
+| AppErrorHandler | `product/init/app_error_handler.dart` | Global uncaught error capture |
+| ResponsiveExtension | `product/utils/extension/context_extension.dart` | `context.isWide`, `context.r(20)`, `context.rf(16)` |
+| ThemeContextExtension | `product/utils/extension/context_extension.dart` | `context.colorScheme`, `context.textTheme`, keyboard state |
+| StringExtension | `product/utils/extension/string_extension.dart` | `normalize`, `initials`, `withHttps`, … |
+| DateTimeExtension | `product/utils/extension/date_time_extension.dart` | `timeAgo`, `relativeDayLabel`, `shortDate`, … |
+| Int/Double/FileSize extensions | `product/utils/extension/num_extension.dart` | `padded`, `grouped`, `readableFileSize`, … |
+| ButtonFeedback | `product/utils/button_feedback.dart` | Haptic + sound feedback |
+| ThemeDecorations | `product/utils/theme_decorations.dart` | Theme-based container decoration |
+
+## Design Tokens
+
+| Token | File |
+|-------|------|
+| AppPaddings | `product/const/app_paddings.dart` |
+| AppRadius | `product/const/app_radius.dart` |
+| AppDurations | `product/const/app_durations.dart` |
+| AppIconSizes | `product/const/app_icon_sizes.dart` |
+| AppShadows | `product/theme/app_shadows.dart` |
+| RegexTypes | `product/const/regex_types.dart` |
+| AppSemanticKeys | `product/const/app_semantic_keys.dart` |
+
+Details: [design_tokens.md](design_tokens.md)
 
 ## Fonts
 
@@ -329,7 +393,7 @@ Firebase Remote Config integration is ready but commented out. To activate:
 
 To find which file to read when adding a new feature:
 
-→ **[doc/README.md](README.md)** — Task-based navigation table + checklist
+→ **[doc/guides/README.md](README.md)** — Task-based navigation table + checklist
 
 ### Inline guides (inside code)
 
@@ -345,22 +409,22 @@ To find which file to read when adding a new feature:
 
 Template'i kendi projene uyarlamanın tüm adımları (paket adı, çeviriler, store URL'leri, tema varyantları, Android modül soruları) tek yerde:
 
-→ **[setup/customization.md](setup/customization.md)**
+→ **[customization.md](customization.md)**
 
 ---
 
-## Setup Commands (Reference)
+## Commands
+
+Uzun komutları elle yazma — hepsi `script/` altında ve CI ile aynı adımları çalıştırır.
 
 ```bash
-# Dependencies
-flutter pub get
-
-# Code-gen (Freezed, GoRouter, Hive, FlutterGen)
-dart run build_runner build --delete-conflicting-outputs
-
-# EasyLocalization key generation
-flutter pub run easy_localization:generate -O lib/product/init/language -f keys -o locale_keys.g.dart --source-dir assets/translations
-
-# Error analysis
-flutter analyze
+./script/general.sh     # pub get + codegen + locale keys (klon sonrası tek komut)
+./script/codegen.sh     # Freezed, GoRouter, Hive, FlutterGen
+./script/lang.sh        # locale_keys.g.dart  (-s en.json bayrağını garanti eder)
+./script/verify.sh      # BITIRME: dart format → flutter analyze → flutter test
+./script/deep_clean.sh  # üretilen dosyaları ve bağımlılıkları sıfırdan kur
 ```
+
+`rps` kuruluysa: `rps general`, `rps verify`, `rps codegen`, `rps lang`, `rps deepClean`.
+
+**Codegen kapsamı** `build.yaml` ile daraltılmıştır (her builder yalnızca ilgilendiği dosyaları tarar). Yeni bir builder eklenirse kapsamı orada da tanımlanmalı.

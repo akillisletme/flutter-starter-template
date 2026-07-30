@@ -100,12 +100,10 @@ All user-visible text is defined in JSON files under `assets/translations/`.
 
 2. Regenerate type-safe keys:
    ```bash
-   flutter pub run easy_localization:generate \
-     -O lib/product/init/language \
-     -f keys \
-     -o locale_keys.g.dart \
-     --source-dir assets/translations
+   ./script/lang.sh
    ```
+
+   > **Neden script?** Komutta `-s en.json` **zorunludur**. Verilmezse easy_localization kaynak dosyayı alfabetik ilk dosyadan (`tr.json`) seçer ve yalnızca bir dilde bulunan anahtarlar üretilen sınıfın dışında kalır — hata vermeden anahtar düşer. Script bu bayrağı garanti eder; komutu elle yazma.
 
 3. Use in widget:
    ```dart

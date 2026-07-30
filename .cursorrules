@@ -1,8 +1,7 @@
-Bu projenin tüm AI talimatları AGENTS.md dosyasındadır (tek kaynak).
+Tum AI talimatlari doc/guides/AGENTS.md dosyasindadir (tek kaynak).
+Kurulum akisi: doc/setup.md
 
-Kod yazmadan önce AGENTS.md'yi oku ve içindeki yönlendirmeleri takip et:
-- doc/README.md — doc haritası + görev→doc tablosu
-- doc/project.md — proje genel bakışı ve sistemler
-- doc/clean_code.md — her satır kodda geçerli temiz-kod standardı
+Kod yazmadan once doc/guides/AGENTS.md'yi oku ve icindeki yonlendirmeleri takip et.
 
-Bu dosya sadece AGENTS.md'ye yönlendirir; kurallar orada tanımlıdır, burada tekrar edilmez.
+Bu dosya yalnizca pointer'dir; kurallar orada tanimlidir.
+Kokte durmak zorunda: Cursor yalnizca kok dizindeki .cursorrules'i okur.

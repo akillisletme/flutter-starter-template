@@ -1,107 +1,103 @@
-# Service Initialization & Locator
+# Servis Başlatma ve Locator
 
-All services are initialized with the following flow:
+Tüm bağımlılıkların tek sahibi `lib/product/service/service_locator.dart`.
+
+## Akış
 
 ```
 ApplicationInit.start()
-  -> WidgetsFlutterBinding.ensureInitialized()
-  -> Firebase.initializeApp(...)          // When Firebase is enabled
-  -> setupLocator()
-      -> _registerSingletons()            // Register services
-      -> _initializeServices()            // Call async init
+  → WidgetsFlutterBinding.ensureInitialized()
+  → AppErrorHandler.register()          // hata yakalama erken bağlanır
+  → orientation + EasyLocalization
+  → Firebase.initializeApp()            // yalnız AppConfig.firebaseEnabled ise
+  → setupLocator()
+      → _registerLazySingletons()       // senkron servisler
+      → _registerAsyncSingletons()      // async init gerekenler
+      → locator.allReady()              // hepsi hazır olana kadar bekler
 ```
 
-## ApplicationInit (`lib/product/init/application_init.dart`)
+`main()` bunu `await` ettiği için **ilk kare çizilmeden önce** tüm kritik
+servisler kullanıma hazırdır.
+
+## İki kayıt türü
+
+**`registerLazySingleton`** — durumsuz, `init()` istemeyen servisler. İlk
+erişimde oluşturulur, açılışta değil.
+
+**`registerSingletonAsync`** — `init()` gerektirenler. `allReady()` hepsini
+bekler; elle `await service.init()` zinciri yazılmaz. Aralarında sıra
+bağımlılığı varsa `dependsOn:` ile bildirilir.
+
+## Firebase servisleri: üçlü desen
+
+Her Firebase servisi **`interface + FirebaseXxx + NoopXxx`** üçlüsünden oluşur.
+`AppConfig.firebaseEnabled` kapalıyken no-op bağlanır.
 
 ```dart
-@immutable
-final class ApplicationInit {
-  const ApplicationInit();
-
-  Future<void> start() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    // await Firebase.initializeApp(
-    //   options: DefaultFirebaseOptions.currentPlatform,
-    // );
-    await setupLocator();
-  }
-}
+..registerLazySingleton<AnalyticsService>(
+  () => firebase ? FirebaseAnalyticsService() : const NoopAnalyticsService(),
+)
 ```
 
-## Service Locator (`lib/product/service/service_locator.dart`)
+Sonuç: **çağrı yerinde hiçbir zaman `if (firebaseEnabled)` yazılmaz.** Template
+klonlandığı anda hiçbir kurulum olmadan çalışır; servis çağrıları sessizce
+no-op olur.
+
+Kayıtlı olanlar: `AuthService` · `CrashReporter` · `AnalyticsService` ·
+`PushService` · `StorageService` · `UserProfileService` · `AppVersionSource`
+
+`PurchaseService` de aynı desendedir ama Firebase'e değil, RevenueCat
+anahtarının varlığına bakar (`AppConfig.isPurchaseConfigured`).
+
+## Yeni servis ekleme
+
+**1. Sözleşmeyi yaz** (`abstract interface class`), sonra implementasyonu.
+Servis dış dünyanın tipini (Firebase, RevenueCat…) **sızdırmaz**; kendi
+modelini ve hata kodunu döndürür.
+
+**2. Kaydet:**
 
 ```dart
-final GetIt locator = GetIt.instance;
+// Senkron
+..registerLazySingleton<NewService>(NewServiceImpl.new)
 
-Future<void> setupLocator() async {
-  _registerSingletons();
-  await _initializeServices();
-}
+// Async init gerekiyorsa
+..registerSingletonAsync<NewService>(() async {
+  final service = NewServiceImpl();
+  await service.init();
+  return service;
+})
+```
 
-Future<void> _initializeServices() async {
-  await locator<SharedCache>().init();
-  await locator<ProductCache>().init();
-  await locator<RemoteConfigService>().init();
-}
+**3. Getter ekle:**
 
-void _registerSingletons() {
-  locator
-    ..registerSingleton<SharedCache>(SharedCache.instance)
-    ..registerSingleton<ProductCache>(
-      ProductCache(cacheManager: HiveCacheManager()),
-    )
-    ..registerSingleton<RemoteConfigService>(
-      RemoteConfigService.instance,
-    );
-}
-
+```dart
 extension ServiceLocator on GetIt {
-  SharedCache get sharedCache => locator<SharedCache>();
-  ProductCache get productCache => locator<ProductCache>();
-  RemoteConfigService get remoteConfigService => locator<RemoteConfigService>();
+  NewService get newService => locator<NewService>();
 }
 ```
 
-## Adding a new service to locator
+**4. Dış bağımlılığı varsa no-op karşılığını da yaz** — kapalıyken uygulama
+çalışmaya devam etmeli.
 
-1. Add to `_registerSingletons()`:
-   ```dart
-   ..registerSingleton<NewService>(NewService.instance)
-   ```
-2. If async init is needed, add to `_initializeServices()`:
-   ```dart
-   await locator<NewService>().init();
-   ```
-3. Add getter to `ServiceLocator` extension:
-   ```dart
-   NewService get newService => locator<NewService>();
-   ```
-
-## Init pattern
-
-Services that require async setup follow this pattern:
+## Erişim
 
 ```dart
-class SomeService {
-  SomeService._();
-  static final SomeService instance = SomeService._();
-
-  bool _initialized = false;
-
-  Future<void> init() async {
-    if (_initialized) return;
-    // setup logic...
-    _initialized = true;
-  }
-}
+locator.auth          locator.crash         locator.analytics
+locator.push          locator.storage       locator.userProfiles
+locator.sharedCache   locator.productCache  locator.versionSource
+locator.purchases     locator.permission    locator.urlLauncher
 ```
 
-## Registered services
+Cubit'ler servisi **constructor'dan** alır, locator'a doğrudan çağrı gömmez —
+aksi halde test edilemez hale gelir (`clean_code.md` → Test).
 
-| Service | Type | Access |
-|---------|------|--------|
-| SharedCache | Simple key-value cache | `locator.sharedCache` |
-| ProductCache | Hive model cache | `locator.productCache` |
-| RemoteConfigService | Firebase Remote Config | `locator.remoteConfigService` |
-| UrlLauncherService | URL opening / email sending | `locator.urlLauncher` |
-| PermissionService | Permission management (permission_handler) | `locator.permission` |
+```dart
+BlocProvider(create: (_) => AuthCubit(locator.auth))
+```
+
+## Modül-özel servisler
+
+Yalnızca tek bir feature'ın kullandığı servis locator'a **kaydedilmez**;
+`lib/feature/<ad>/service/` altında durur ve o feature'ın cubit'ine
+constructor'dan verilir. Karar ağacı: [service_rules.md](service_rules.md).
