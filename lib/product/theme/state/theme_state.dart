@@ -75,7 +75,8 @@ class ThemeState {
     return AppThemeVariant.fromKey(themeId).previewColor;
   }
 
-  static int get _defaultSeedArgb => AppThemeVariant.purple.seedColor.toARGB32();
+  static int get _defaultSeedArgb =>
+      AppThemeVariant.purple.seedColor.toARGB32();
 
   ThemeState copyWith({
     String? themeId,
@@ -109,11 +110,11 @@ class ThemeState {
 
   @override
   int get hashCode => Object.hash(
-        themeId,
-        customSeedArgb,
-        schemeVariant,
-        contrastLevel,
-        useSystemColors,
-        themeMode,
-      );
+    themeId,
+    customSeedArgb,
+    schemeVariant,
+    contrastLevel,
+    useSystemColors,
+    themeMode,
+  );
 }

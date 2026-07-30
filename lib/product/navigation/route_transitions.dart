@@ -19,27 +19,18 @@ Page<dynamic> slideRightTransition({
         end: Offset.zero,
       ).chain(CurveTween(curve: Curves.easeOutCubic)).animate(animation);
 
-      final fadeIn = CurvedAnimation(
-        parent: animation,
-        curve: Curves.easeOut,
-      );
+      final fadeIn = CurvedAnimation(parent: animation, curve: Curves.easeOut);
 
       // Eski sayfa: fade out
       final fadeOut = Tween<double>(begin: 1, end: 0).animate(
-        CurvedAnimation(
-          parent: secondaryAnimation,
-          curve: Curves.easeIn,
-        ),
+        CurvedAnimation(parent: secondaryAnimation, curve: Curves.easeIn),
       );
 
       return FadeTransition(
         opacity: fadeOut,
         child: FadeTransition(
           opacity: fadeIn,
-          child: SlideTransition(
-            position: offsetAnimation,
-            child: child,
-          ),
+          child: SlideTransition(position: offsetAnimation, child: child),
         ),
       );
     },
@@ -48,10 +39,7 @@ Page<dynamic> slideRightTransition({
 
 /// Yumuşak fade geçişi.
 /// Eski sayfa fade out, yeni sayfa fade in — sıralı interval ile üst üste binme önlenir.
-Page<dynamic> fadeTransition({
-  required LocalKey key,
-  required Widget child,
-}) {
+Page<dynamic> fadeTransition({required LocalKey key, required Widget child}) {
   return CustomTransitionPage(
     key: key,
     child: child,
@@ -74,10 +62,7 @@ Page<dynamic> fadeTransition({
 
       return FadeTransition(
         opacity: fadeOut,
-        child: FadeTransition(
-          opacity: fadeIn,
-          child: child,
-        ),
+        child: FadeTransition(opacity: fadeIn, child: child),
       );
     },
   );

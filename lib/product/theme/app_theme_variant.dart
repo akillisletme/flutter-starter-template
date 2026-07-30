@@ -67,18 +67,12 @@ enum AppThemeVariant {
   final Color seedColor;
   final Color previewColor;
 
-  ColorScheme get darkColorScheme => ColorScheme.fromSeed(
-        seedColor: seedColor,
-        brightness: Brightness.dark,
-      );
+  ColorScheme get darkColorScheme =>
+      ColorScheme.fromSeed(seedColor: seedColor, brightness: Brightness.dark);
 
-  ColorScheme get lightColorScheme => ColorScheme.fromSeed(
-        seedColor: seedColor,
-      );
+  ColorScheme get lightColorScheme =>
+      ColorScheme.fromSeed(seedColor: seedColor);
 
-  static AppThemeVariant fromKey(String key) =>
-      AppThemeVariant.values.firstWhere(
-        (v) => v.key == key,
-        orElse: () => AppThemeVariant.purple,
-      );
+  static AppThemeVariant fromKey(String key) => AppThemeVariant.values
+      .firstWhere((v) => v.key == key, orElse: () => AppThemeVariant.purple);
 }

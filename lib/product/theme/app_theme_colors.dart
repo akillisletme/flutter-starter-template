@@ -77,6 +77,5 @@ class AppThemeColors extends ThemeExtension<AppThemeColors> {
 
 /// `context.appColors.scoreGold` seklinde kisa erisim.
 extension AppThemeColorsExtension on BuildContext {
-  AppThemeColors get appColors =>
-      Theme.of(this).extension<AppThemeColors>()!;
+  AppThemeColors get appColors => Theme.of(this).extension<AppThemeColors>()!;
 }

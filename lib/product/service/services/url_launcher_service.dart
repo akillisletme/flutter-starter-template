@@ -21,9 +21,7 @@ final class UrlLauncherService {
 
   /// Platforma göre App Store veya Play Store'u açar.
   Future<void> openStore() async {
-    final url = Platform.isIOS
-        ? AppString.appStoreUrl
-        : AppString.playStoreUrl;
+    final url = Platform.isIOS ? AppString.appStoreUrl : AppString.playStoreUrl;
     if (url.isEmpty) {
       debugPrint('UrlLauncherService.openStore -> Store URL tanımlanmamış');
       return;

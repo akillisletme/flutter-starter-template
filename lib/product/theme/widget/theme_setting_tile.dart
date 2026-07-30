@@ -21,19 +21,15 @@ class ThemeSettingTile extends StatelessWidget {
         decoration: context.settingContainerDecoration,
         child: Row(
           children: [
-            Icon(
-              Icons.palette_rounded,
-              color: previewColor,
-              size: 32,
-            ),
+            Icon(Icons.palette_rounded, color: previewColor, size: 32),
             const SizedBox(width: 16),
             Expanded(
               child: Text(
                 LocaleKeys.settings_appTheme.tr(),
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: cs.onSurface,
-                    ),
+                  fontWeight: FontWeight.bold,
+                  color: cs.onSurface,
+                ),
               ),
             ),
             Container(

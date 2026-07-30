@@ -26,6 +26,7 @@ class CoreLocalize {
 
   static const initialPath = 'assets/translations';
   static final startLocale = AppLocale.tr.locale;
-  static final List<Locale> supportedItems =
-      AppLocale.values.map((e) => e.locale).toList();
+  static final List<Locale> supportedItems = AppLocale.values
+      .map((e) => e.locale)
+      .toList();
 }

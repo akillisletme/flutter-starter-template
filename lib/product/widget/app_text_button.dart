@@ -1,13 +1,12 @@
 import 'package:akillisletme/product/utils/button_feedback.dart';
 import 'package:flutter/material.dart';
 
-
 /// Minimal/text buton — TextButton tabanli.
 /// "Temizle, sil" gibi hafif aksiyonlar icin.
 class AppTextButton extends StatelessWidget {
-
   const AppTextButton({
-    required this.label, super.key,
+    required this.label,
+    super.key,
     this.onPressed,
     this.color,
   });
@@ -28,9 +27,7 @@ class AppTextButton extends StatelessWidget {
       onPressed: _wrappedOnPressed,
       child: Text(
         label,
-        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: color,
-            ),
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: color),
       ),
     );
   }

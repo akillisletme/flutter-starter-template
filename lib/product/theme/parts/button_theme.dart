@@ -8,10 +8,7 @@ ElevatedButtonThemeData _buildElevatedButtonTheme(ColorScheme cs) =>
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
         elevation: 0,
-        textStyle: const TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w700,
-        ),
+        textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
       ),
     );
 
@@ -22,10 +19,7 @@ FilledButtonThemeData _buildFilledButtonTheme(ColorScheme cs) =>
         foregroundColor: cs.onPrimary,
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-        textStyle: const TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w700,
-        ),
+        textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
       ),
     );
 
@@ -36,17 +30,12 @@ OutlinedButtonThemeData _buildOutlinedButtonTheme(ColorScheme cs) =>
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
         side: BorderSide(color: cs.primary),
-        textStyle: const TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w700,
-        ),
+        textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
       ),
     );
 
 final _dialogTheme = DialogThemeData(
-  shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(12),
-  ),
+  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
   elevation: 8,
   alignment: Alignment.center,
   titleTextStyle: const TextStyle(

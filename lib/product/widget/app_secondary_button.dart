@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 /// Ikincil aksiyon butonu — OutlinedButton tabanli.
 /// "Geri don, tut, iptal" gibi ikincil aksiyonlar icin.
 class AppSecondaryButton extends StatelessWidget {
-
   const AppSecondaryButton({
-    required this.label, super.key,
+    required this.label,
+    super.key,
     this.onPressed,
     this.icon,
     this.isExpanded = true,
@@ -51,9 +51,7 @@ class AppSecondaryButton extends StatelessWidget {
     return OutlinedButton.styleFrom(
       padding: const EdgeInsets.symmetric(vertical: 16),
       textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(14),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
       side: BorderSide(color: cs.primary),
     );
   }

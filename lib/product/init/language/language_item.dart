@@ -23,11 +23,19 @@ class LanguageItem {
     LanguageItem(flag: '🇪🇸', nativeName: 'Español', appLocale: AppLocale.es),
     LanguageItem(flag: '🇫🇷', nativeName: 'Français', appLocale: AppLocale.fr),
     LanguageItem(flag: '🇮🇳', nativeName: 'हिन्दी', appLocale: AppLocale.hi),
-    LanguageItem(flag: '🇮🇩', nativeName: 'Indonesia', appLocale: AppLocale.id),
+    LanguageItem(
+      flag: '🇮🇩',
+      nativeName: 'Indonesia',
+      appLocale: AppLocale.id,
+    ),
     LanguageItem(flag: '🇮🇹', nativeName: 'Italiano', appLocale: AppLocale.it),
     LanguageItem(flag: '🇯🇵', nativeName: '日本語', appLocale: AppLocale.ja),
     LanguageItem(flag: '🇰🇷', nativeName: '한국어', appLocale: AppLocale.ko),
-    LanguageItem(flag: '🇧🇷', nativeName: 'Português', appLocale: AppLocale.pt),
+    LanguageItem(
+      flag: '🇧🇷',
+      nativeName: 'Português',
+      appLocale: AppLocale.pt,
+    ),
     LanguageItem(flag: '🇷🇺', nativeName: 'Русский', appLocale: AppLocale.ru),
     LanguageItem(flag: '🇨🇳', nativeName: '中文', appLocale: AppLocale.zh),
   ];

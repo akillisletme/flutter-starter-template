@@ -59,11 +59,11 @@ final class CustomSeedThemeSpec extends ThemeSpec {
 
   @override
   ColorScheme schemeFor(Brightness brightness) => ColorScheme.fromSeed(
-        seedColor: seed,
-        brightness: brightness,
-        dynamicSchemeVariant: schemeVariant,
-        contrastLevel: contrastLevel,
-      );
+    seedColor: seed,
+    brightness: brightness,
+    dynamicSchemeVariant: schemeVariant,
+    contrastLevel: contrastLevel,
+  );
 }
 
 /// Tam kontrollu, hazir `ColorScheme`'ler (AMOLED saf siyah, hacker modu).

@@ -11,9 +11,7 @@ extension ThemeDecorations on BuildContext {
         ],
       ),
       borderRadius: BorderRadius.circular(20),
-      border: Border.all(
-        color: cs.outlineVariant.withValues(alpha: 0.2),
-      ),
+      border: Border.all(color: cs.outlineVariant.withValues(alpha: 0.2)),
     );
   }
 }

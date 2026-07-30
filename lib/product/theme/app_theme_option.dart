@@ -61,13 +61,13 @@ abstract final class AppThemeCatalog {
   ];
 
   static String _seedLabelKey(AppThemeVariant v) => switch (v) {
-        AppThemeVariant.purple => LocaleKeys.theme_name_purple,
-        AppThemeVariant.blue => LocaleKeys.theme_name_blue,
-        AppThemeVariant.green => LocaleKeys.theme_name_green,
-        AppThemeVariant.orange => LocaleKeys.theme_name_orange,
-        AppThemeVariant.red => LocaleKeys.theme_name_red,
-        AppThemeVariant.black => LocaleKeys.theme_name_black,
-        AppThemeVariant.teal => LocaleKeys.theme_name_teal,
-        AppThemeVariant.indigo => LocaleKeys.theme_name_indigo,
-      };
+    AppThemeVariant.purple => LocaleKeys.theme_name_purple,
+    AppThemeVariant.blue => LocaleKeys.theme_name_blue,
+    AppThemeVariant.green => LocaleKeys.theme_name_green,
+    AppThemeVariant.orange => LocaleKeys.theme_name_orange,
+    AppThemeVariant.red => LocaleKeys.theme_name_red,
+    AppThemeVariant.black => LocaleKeys.theme_name_black,
+    AppThemeVariant.teal => LocaleKeys.theme_name_teal,
+    AppThemeVariant.indigo => LocaleKeys.theme_name_indigo,
+  };
 }

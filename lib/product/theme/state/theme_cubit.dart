@@ -17,11 +17,11 @@ class ThemeCubit extends Cubit<ThemeState> {
     final themeId = cache.getValue<String>(SharedKeys.themeVariant);
     final themeModeKey = cache.getValue<String>(SharedKeys.theme);
     final customSeed = cache.getValue<int>(SharedKeys.themeCustomSeed);
-    final schemeVariant =
-        cache.getValue<String>(SharedKeys.themeSchemeVariant);
+    final schemeVariant = cache.getValue<String>(SharedKeys.themeSchemeVariant);
     final contrast = cache.getValue<double>(SharedKeys.themeContrast);
-    final useSystemColors =
-        cache.getValue<bool>(SharedKeys.themeUseSystemColors);
+    final useSystemColors = cache.getValue<bool>(
+      SharedKeys.themeUseSystemColors,
+    );
 
     emit(
       ThemeState(
