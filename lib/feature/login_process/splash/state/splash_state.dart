@@ -17,6 +17,9 @@ abstract class SplashState with _$SplashState {
     required String minimumVersion,
   }) = _UpdateRequired;
 
+  /// No internet connection — kullanici baglaniyi acip tekrar deneyebilir.
+  const factory SplashState.offline() = _Offline;
+
   /// Error occurred during checks
   const factory SplashState.error({required String message}) = _Error;
 }

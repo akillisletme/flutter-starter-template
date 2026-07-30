@@ -1,4 +1,5 @@
 import 'package:akillisletme/product/init/app_builder.dart';
+import 'package:akillisletme/product/init/app_error_handler.dart';
 import 'package:akillisletme/product/init/application_init.dart';
 import 'package:akillisletme/product/init/language/core_localize.dart';
 import 'package:akillisletme/product/init/state_initialize.dart';
@@ -10,17 +11,21 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() async {
-  await const ApplicationInit().start();
-  runApp(
-    EasyLocalization(
-      supportedLocales: CoreLocalize.supportedItems,
-      path: CoreLocalize.initialPath,
-      startLocale: CoreLocalize.startLocale,
-      useOnlyLangCode: true,
-      child: const StateInitialize(child: StarterApp()),
-    ),
-  );
+void main() {
+  // Zone icinde calistir: `PlatformDispatcher.onError`'in yakalamadigi,
+  // ucuncu parti kodun baslattigi async hatalar da raporlansin.
+  AppErrorHandler.run(() async {
+    await const ApplicationInit().start();
+    runApp(
+      EasyLocalization(
+        supportedLocales: CoreLocalize.supportedItems,
+        path: CoreLocalize.initialPath,
+        startLocale: CoreLocalize.startLocale,
+        useOnlyLangCode: true,
+        child: const StateInitialize(child: StarterApp()),
+      ),
+    );
+  });
 }
 
 class StarterApp extends StatelessWidget {
@@ -34,14 +39,8 @@ class StarterApp extends StatelessWidget {
         return MaterialApp.router(
           debugShowCheckedModeBanner: false,
           themeMode: themeState.themeMode,
-          darkTheme: AppTheme.darkTheme(
-            themeState,
-            dynamicScheme: darkDynamic,
-          ),
-          theme: AppTheme.lightTheme(
-            themeState,
-            dynamicScheme: lightDynamic,
-          ),
+          darkTheme: AppTheme.darkTheme(themeState, dynamicScheme: darkDynamic),
+          theme: AppTheme.lightTheme(themeState, dynamicScheme: lightDynamic),
           routerConfig: AppRouter.router,
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
