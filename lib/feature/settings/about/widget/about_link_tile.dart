@@ -20,10 +20,7 @@ class AboutLinkTile extends StatelessWidget {
     return ListTile(
       leading: Icon(icon, color: cs.onSurfaceVariant),
       title: Text(title),
-      trailing: Icon(
-        Icons.chevron_right_rounded,
-        color: cs.onSurfaceVariant,
-      ),
+      trailing: Icon(Icons.chevron_right_rounded, color: cs.onSurfaceVariant),
       onTap: () => locator.urlLauncher.openInApp(url),
     );
   }

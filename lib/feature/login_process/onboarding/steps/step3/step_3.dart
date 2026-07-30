@@ -26,11 +26,7 @@ class Step3 extends StatelessWidget {
               return Column(
                 children: [
                   const SizedBox(height: 24),
-                  Icon(
-                    Icons.palette_rounded,
-                    size: 48,
-                    color: cs.primary,
-                  ),
+                  Icon(Icons.palette_rounded, size: 48, color: cs.primary),
                   const SizedBox(height: 16),
                   Text(
                     LocaleKeys.onboarding_step3Title.tr(),
@@ -42,9 +38,7 @@ class Step3 extends StatelessWidget {
                   const SizedBox(height: 8, width: double.infinity),
                   Text(
                     LocaleKeys.onboarding_step3Desc.tr(),
-                    style: tt.bodyMedium?.copyWith(
-                      color: cs.onSurfaceVariant,
-                    ),
+                    style: tt.bodyMedium?.copyWith(color: cs.onSurfaceVariant),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 28),
@@ -88,8 +82,7 @@ class Step3 extends StatelessWidget {
                   : cs.surfaceContainerHighest,
               borderRadius: BorderRadius.circular(14),
               border: Border.all(
-                color:
-                    isSelected ? variant.previewColor : Colors.transparent,
+                color: isSelected ? variant.previewColor : Colors.transparent,
                 width: 2,
               ),
             ),
@@ -119,11 +112,8 @@ class Step3 extends StatelessWidget {
                 Text(
                   variant.label,
                   style: tt.labelSmall?.copyWith(
-                    fontWeight:
-                        isSelected ? FontWeight.bold : FontWeight.w500,
-                    color: isSelected
-                        ? variant.previewColor
-                        : cs.onSurface,
+                    fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                    color: isSelected ? variant.previewColor : cs.onSurface,
                   ),
                 ),
               ],
@@ -140,10 +130,7 @@ class Step3 extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          LocaleKeys.settings_themeMode.tr(),
-          style: tt.titleSmall,
-        ),
+        Text(LocaleKeys.settings_themeMode.tr(), style: tt.titleSmall),
         const SizedBox(height: 8),
         SizedBox(
           width: double.maxFinite,

@@ -30,12 +30,14 @@ class _OnboardingNavButtonState extends State<OnboardingNavButton>
       vsync: this,
       duration: const Duration(milliseconds: 120),
     );
-    _scale = Tween<double>(begin: 1, end: 0.85).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
-    );
-    _opacity = Tween<double>(begin: 1, end: 0.6).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
-    );
+    _scale = Tween<double>(
+      begin: 1,
+      end: 0.85,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+    _opacity = Tween<double>(
+      begin: 1,
+      end: 0.6,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
   }
 
   @override
@@ -73,10 +75,7 @@ class _OnboardingNavButtonState extends State<OnboardingNavButton>
         builder: (context, child) {
           return Transform.scale(
             scale: _scale.value,
-            child: Opacity(
-              opacity: _opacity.value,
-              child: child,
-            ),
+            child: Opacity(opacity: _opacity.value, child: child),
           );
         },
         child: Container(

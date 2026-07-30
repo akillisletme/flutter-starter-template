@@ -12,9 +12,7 @@ class LanguageSelectionView extends StatelessWidget {
     context.locale; // Dil degisiminde rebuild tetiklemek icin
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(LocaleKeys.language_chooseYourLanguage.tr()),
-      ),
+      appBar: AppBar(title: Text(LocaleKeys.language_chooseYourLanguage.tr())),
       body: SingleChildScrollView(
         padding: AppPaddings.page,
         child: Column(
@@ -24,8 +22,8 @@ class LanguageSelectionView extends StatelessWidget {
             Text(
               LocaleKeys.language_selectPreferredLanguage.tr(),
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: Theme.of(context).colorScheme.onSurfaceVariant,
-                  ),
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+              ),
               textAlign: TextAlign.center,
             ),
             const LanguageGridContent(),

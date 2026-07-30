@@ -38,26 +38,18 @@ class SettingsView extends StatelessWidget {
             const SizedBox(height: AppPaddings.l),
             SettingsSection(
               title: LocaleKeys.settings_android.tr(),
-              children: const [
-                OverlayTile(),
-              ],
+              children: const [OverlayTile()],
             ),
           ],
           const SizedBox(height: AppPaddings.l),
           SettingsSection(
             title: LocaleKeys.settings_support.tr(),
-            children: const [
-              ContactUsTile(),
-              RateAppTile(),
-              ShareAppTile(),
-            ],
+            children: const [ContactUsTile(), RateAppTile(), ShareAppTile()],
           ),
           const SizedBox(height: AppPaddings.l),
           SettingsSection(
             title: LocaleKeys.settings_aboutTitle.tr(),
-            children: const [
-              AboutTile(),
-            ],
+            children: const [AboutTile()],
           ),
         ],
       ),

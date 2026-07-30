@@ -18,16 +18,17 @@ class ShareAppTile extends StatelessWidget {
       leading: Icon(Icons.share_rounded, color: cs.onSurfaceVariant),
       title: Text(LocaleKeys.settings_shareApp.tr()),
       onTap: () async {
-        final url =
-            Platform.isIOS ? AppString.appStoreUrl : AppString.playStoreUrl;
+        final url = Platform.isIOS
+            ? AppString.appStoreUrl
+            : AppString.playStoreUrl;
         try {
           await SharePlus.instance.share(ShareParams(text: url));
         } on MissingPluginException {
           // Simulator'da share desteklenmeyebilir
           if (context.mounted) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(url)),
-            );
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(SnackBar(content: Text(url)));
           }
         }
       },

@@ -59,11 +59,7 @@ class AboutView extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 16),
-          const SettingsSection(
-            children: [
-              VersionTile(),
-            ],
-          ),
+          const SettingsSection(children: [VersionTile()]),
         ],
       ),
     );

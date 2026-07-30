@@ -20,7 +20,9 @@ class AndroidModulesView extends StatefulWidget {
 
 class _AndroidModulesViewState extends State<AndroidModulesView>
     with WidgetsBindingObserver {
-  static const _overlayChannel = MethodChannel(MethodChannels.overlayPermission);
+  static const _overlayChannel = MethodChannel(
+    MethodChannels.overlayPermission,
+  );
   static const _counterChannel = MethodChannel(MethodChannels.counter);
 
   bool _overlayGranted = false;
@@ -51,7 +53,8 @@ class _AndroidModulesViewState extends State<AndroidModulesView>
   }
 
   Future<void> _checkPermission() async {
-    final granted = await _overlayChannel.invokeMethod<bool>('isGranted') ?? false;
+    final granted =
+        await _overlayChannel.invokeMethod<bool>('isGranted') ?? false;
     if (mounted) setState(() => _overlayGranted = granted);
   }
 
@@ -153,17 +156,21 @@ class _AndroidBody extends StatelessWidget {
         const SizedBox(height: AppPaddings.s),
 
         // ── Modül kartları ──
-        ...modules.map((m) => Padding(
-              padding: const EdgeInsets.only(bottom: AppPaddings.l),
-              child: _ModuleCard(module: m),
-            )),
+        ...modules.map(
+          (m) => Padding(
+            padding: const EdgeInsets.only(bottom: AppPaddings.l),
+            child: _ModuleCard(module: m),
+          ),
+        ),
 
         const SizedBox(height: AppPaddings.s),
 
         // ── Sayaç Simülasyonu ──
         Text(
           LocaleKeys.androidModules_counterSection.tr(),
-          style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+          style: theme.textTheme.titleMedium?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
         ),
         const SizedBox(height: AppPaddings.s),
         Card(
@@ -213,7 +220,9 @@ class _AndroidBody extends StatelessWidget {
         // ── İzin Durumu ──
         Text(
           LocaleKeys.androidModules_permissionSection.tr(),
-          style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+          style: theme.textTheme.titleMedium?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
         ),
         const SizedBox(height: AppPaddings.s),
         Card(
@@ -256,7 +265,9 @@ class _AndroidBody extends StatelessWidget {
                 if (overlayGranted)
                   Text(
                     LocaleKeys.androidModules_permissionGranted.tr(),
-                    style: theme.textTheme.bodySmall?.copyWith(color: Colors.green),
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: Colors.green,
+                    ),
                   )
                 else
                   AppPrimaryButton(
@@ -286,7 +297,9 @@ class _AndroidBody extends StatelessWidget {
               Expanded(
                 child: Text(
                   LocaleKeys.androidModules_infoNote.tr(),
-                  style: theme.textTheme.bodySmall?.copyWith(color: cs.onSurfaceVariant),
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: cs.onSurfaceVariant,
+                  ),
                 ),
               ),
             ],
@@ -351,7 +364,11 @@ class _ModuleCard extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Icon(Icons.check_rounded, size: 16, color: theme.colorScheme.primary),
+                    Icon(
+                      Icons.check_rounded,
+                      size: 16,
+                      color: theme.colorScheme.primary,
+                    ),
                     const SizedBox(width: AppPaddings.s),
                     Expanded(child: Text(f, style: theme.textTheme.bodySmall)),
                   ],
@@ -379,7 +396,10 @@ class _NotSupportedBody extends StatelessWidget {
         children: [
           Icon(Icons.android, size: 64, color: theme.colorScheme.outline),
           const SizedBox(height: AppPaddings.l),
-          Text(LocaleKeys.androidModules_notSupportedTitle.tr(), style: theme.textTheme.titleMedium),
+          Text(
+            LocaleKeys.androidModules_notSupportedTitle.tr(),
+            style: theme.textTheme.titleMedium,
+          ),
           const SizedBox(height: AppPaddings.s),
           Text(
             LocaleKeys.androidModules_notSupportedDesc.tr(),

@@ -167,11 +167,7 @@ class _ColorSlider extends StatelessWidget {
                 overlayColor: activeColor.withValues(alpha: 0.2),
                 trackHeight: 12,
               ),
-              child: Slider(
-                value: value,
-                max: max,
-                onChanged: onChanged,
-              ),
+              child: Slider(value: value, max: max, onChanged: onChanged),
             ),
           ],
         ),

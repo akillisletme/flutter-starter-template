@@ -28,8 +28,8 @@ class ThemeSwatch extends StatelessWidget {
     final cs = Theme.of(context).colorScheme;
     final onColor =
         ThemeData.estimateBrightnessForColor(color) == Brightness.dark
-            ? Colors.white
-            : Colors.black;
+        ? Colors.white
+        : Colors.black;
 
     return GestureDetector(
       onTap: onTap,
@@ -75,10 +75,9 @@ class ThemeSwatch extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                    fontWeight:
-                        isSelected ? FontWeight.bold : FontWeight.w500,
-                    color: isSelected ? color : cs.onSurface,
-                  ),
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                color: isSelected ? color : cs.onSurface,
+              ),
             ),
           ],
         ),

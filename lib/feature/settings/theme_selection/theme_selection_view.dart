@@ -66,8 +66,8 @@ class _SectionLabel extends StatelessWidget {
       child: Text(
         text,
         style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: Theme.of(context).colorScheme.onSurfaceVariant,
-            ),
+          color: Theme.of(context).colorScheme.onSurfaceVariant,
+        ),
       ),
     );
   }
@@ -258,7 +258,8 @@ class _PresetsSection extends StatelessWidget {
               ThemeSwatch(
                 color: preset.previewColor,
                 label: preset.labelKey.tr(),
-                isSelected: !state.useSystemColors &&
+                isSelected:
+                    !state.useSystemColors &&
                     state.themeId == preset.themeId &&
                     state.themeMode == preset.themeMode,
                 icon: Icons.auto_awesome_rounded,

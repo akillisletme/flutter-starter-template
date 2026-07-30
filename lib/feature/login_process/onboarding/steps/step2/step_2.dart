@@ -25,10 +25,7 @@ class Step2 extends StatelessWidget {
                 height: 80,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    colors: [
-                      cs.primary,
-                      cs.primary.withValues(alpha: 0.7),
-                    ],
+                    colors: [cs.primary, cs.primary.withValues(alpha: 0.7)],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
@@ -50,9 +47,7 @@ class Step2 extends StatelessWidget {
               const SizedBox(height: 32),
               Text(
                 LocaleKeys.onboarding_step2Title.tr(),
-                style: tt.headlineMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+                style: tt.headlineMedium?.copyWith(fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 16, width: double.infinity),

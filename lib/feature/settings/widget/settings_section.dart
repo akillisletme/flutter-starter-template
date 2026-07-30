@@ -3,11 +3,7 @@ import 'package:flutter/material.dart';
 /// Ayarlar sayfasindaki gruplar icin seffaf kart.
 /// [title] opsiyonel baslik, [children] icindeki tile'lar listelenir.
 class SettingsSection extends StatelessWidget {
-  const SettingsSection({
-    required this.children,
-    super.key,
-    this.title,
-  });
+  const SettingsSection({required this.children, super.key, this.title});
 
   final String? title;
   final List<Widget> children;
@@ -25,18 +21,16 @@ class SettingsSection extends StatelessWidget {
             child: Text(
               title!,
               style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                    fontWeight: FontWeight.w600,
-                    color: cs.onSurfaceVariant,
-                  ),
+                fontWeight: FontWeight.w600,
+                color: cs.onSurfaceVariant,
+              ),
             ),
           ),
         DecoratedBox(
           decoration: BoxDecoration(
             color: cs.surfaceContainerHighest.withValues(alpha: 0.4),
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(
-              color: cs.outlineVariant.withValues(alpha: 0.2),
-            ),
+            border: Border.all(color: cs.outlineVariant.withValues(alpha: 0.2)),
           ),
           child: Column(children: children),
         ),

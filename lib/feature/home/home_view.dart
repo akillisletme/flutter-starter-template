@@ -43,14 +43,16 @@ class _HomeViewState extends HomeViewMode {
             AppSecondaryButton(
               label: 'Cupertino Widgets',
               icon: Icons.phone_iphone,
-              onPressed: () => const CupertinoWidgetsRoute().push<void>(context),
+              onPressed: () =>
+                  const CupertinoWidgetsRoute().push<void>(context),
             ),
             if (Platform.isAndroid) ...[
               const Divider(),
               AppSecondaryButton(
                 label: LocaleKeys.androidModules_title.tr(),
                 icon: Icons.android,
-                onPressed: () => const AndroidModulesRoute().push<void>(context),
+                onPressed: () =>
+                    const AndroidModulesRoute().push<void>(context),
               ),
             ],
           ],

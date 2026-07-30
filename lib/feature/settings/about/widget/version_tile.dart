@@ -18,15 +18,9 @@ class VersionTile extends StatelessWidget {
             : '...';
 
         return ListTile(
-          leading: Icon(
-            Icons.info_outline_rounded,
-            color: cs.onSurfaceVariant,
-          ),
+          leading: Icon(Icons.info_outline_rounded, color: cs.onSurfaceVariant),
           title: Text(LocaleKeys.settings_version.tr()),
-          trailing: Text(
-            version,
-            style: TextStyle(color: cs.onSurfaceVariant),
-          ),
+          trailing: Text(version, style: TextStyle(color: cs.onSurfaceVariant)),
         );
       },
     );

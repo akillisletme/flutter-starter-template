@@ -26,8 +26,8 @@ class Step1 extends StatelessWidget {
               Text(
                 LocaleKeys.language_selectPreferredLanguage.tr(),
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurfaceVariant,
-                    ),
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 24),

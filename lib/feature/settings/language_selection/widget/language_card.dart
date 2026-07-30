@@ -42,20 +42,14 @@ class LanguageCard extends StatelessWidget {
                 child: Text(
                   item.nativeName,
                   style: tt.bodyMedium?.copyWith(
-                    fontWeight:
-                        isSelected ? FontWeight.w700 : FontWeight.w500,
-                    color:
-                        isSelected ? cs.onPrimaryContainer : cs.onSurface,
+                    fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                    color: isSelected ? cs.onPrimaryContainer : cs.onSurface,
                   ),
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
               if (isSelected)
-                Icon(
-                  Icons.check_circle_rounded,
-                  size: 20,
-                  color: cs.primary,
-                ),
+                Icon(Icons.check_circle_rounded, size: 20, color: cs.primary),
             ],
           ),
         ),

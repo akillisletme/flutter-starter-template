@@ -36,7 +36,10 @@ class _OverlayTileState extends State<OverlayTile> {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     return SwitchListTile(
-      secondary: Icon(Icons.picture_in_picture_alt_rounded, color: cs.onSurfaceVariant),
+      secondary: Icon(
+        Icons.picture_in_picture_alt_rounded,
+        color: cs.onSurfaceVariant,
+      ),
       title: Text(LocaleKeys.settings_overlayWindow.tr()),
       subtitle: Text(LocaleKeys.settings_overlayWindowDesc.tr()),
       value: _enabled,

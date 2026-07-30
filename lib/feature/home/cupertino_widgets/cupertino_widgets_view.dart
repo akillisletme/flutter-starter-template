@@ -52,10 +52,7 @@ class _CupertinoWidgetsViewState extends State<CupertinoWidgetsView> {
                 spacing: AppPaddings.s,
                 runSpacing: AppPaddings.s,
                 children: [
-                  CupertinoButton(
-                    onPressed: () {},
-                    child: const Text('Plain'),
-                  ),
+                  CupertinoButton(onPressed: () {}, child: const Text('Plain')),
                   CupertinoButton.filled(
                     onPressed: () {},
                     child: const Text('Filled'),
@@ -75,7 +72,10 @@ class _CupertinoWidgetsViewState extends State<CupertinoWidgetsView> {
           const SizedBox(height: AppPaddings.xxl),
 
           // ── Switch ──
-          const _SectionTitle('Switch', icon: CupertinoIcons.circle_lefthalf_fill),
+          const _SectionTitle(
+            'Switch',
+            icon: CupertinoIcons.circle_lefthalf_fill,
+          ),
           Card(
             child: Padding(
               padding: AppPaddings.allL,
@@ -94,7 +94,10 @@ class _CupertinoWidgetsViewState extends State<CupertinoWidgetsView> {
           const SizedBox(height: AppPaddings.xxl),
 
           // ── Slider ──
-          const _SectionTitle('Slider', icon: CupertinoIcons.slider_horizontal_3),
+          const _SectionTitle(
+            'Slider',
+            icon: CupertinoIcons.slider_horizontal_3,
+          ),
           Card(
             child: Padding(
               padding: AppPaddings.allL,
@@ -104,10 +107,7 @@ class _CupertinoWidgetsViewState extends State<CupertinoWidgetsView> {
                     value: sliderValue,
                     onChanged: (v) => setState(() => sliderValue = v),
                   ),
-                  Text(
-                    '${(sliderValue * 100).round()}%',
-                    style: tt.bodyMedium,
-                  ),
+                  Text('${(sliderValue * 100).round()}%', style: tt.bodyMedium),
                 ],
               ),
             ),
@@ -124,8 +124,7 @@ class _CupertinoWidgetsViewState extends State<CupertinoWidgetsView> {
               padding: AppPaddings.allL,
               child: CupertinoSlidingSegmentedControl<int>(
                 groupValue: segmentedValue,
-                onValueChanged: (v) =>
-                    setState(() => segmentedValue = v ?? 0),
+                onValueChanged: (v) => setState(() => segmentedValue = v ?? 0),
                 children: const {
                   0: Padding(
                     padding: EdgeInsets.symmetric(horizontal: AppPaddings.s),
@@ -203,7 +202,10 @@ class _CupertinoWidgetsViewState extends State<CupertinoWidgetsView> {
           const SizedBox(height: AppPaddings.xxl),
 
           // ── Dialogs & Sheets ──
-          const _SectionTitle('Dialogs & Sheets', icon: CupertinoIcons.chat_bubble),
+          const _SectionTitle(
+            'Dialogs & Sheets',
+            icon: CupertinoIcons.chat_bubble,
+          ),
           Card(
             child: Padding(
               padding: AppPaddings.allL,
