@@ -77,3 +77,7 @@ GoogleService-Info.plist
 
 # Flutter plugins
 .flutter-plugins
+
+# Calisma hafizasi — yalnizca bu deponun gelistiricisi + AI ajani icin.
+# Template klonlayaniyla ilgisi yok, GitHub disinda kalir.
+doc/status.md
