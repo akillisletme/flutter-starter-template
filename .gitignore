@@ -59,9 +59,21 @@ app.*.map.json
 .env
 *.jks
 *.keystore
+
+# Android imzalama parolalari — ASLA commit edilmez.
+# Keystore'un kendisi de repo DISINDA durmalidir (bkz. doc/setup/android_signing.md).
+android/key.properties
+
+# Firebase istemci yapilandirmasi — projeye ozel, klonlayan kendi projesiyle uretir.
 google-services.json
 GoogleService-Info.plist
-firebase_options.dart
+
+# NOT: `lib/firebase_options.dart` bilincli olarak IGNORE EDILMEZ.
+# Template, Firebase paketleriyle derlenebilmek icin o dosyanin bir
+# placeholder surumunu tasir; ignore edilirse klonlayan derleyemez.
+# `flutterfire configure` uzerine yazar. Icerigi sir degildir — Firebase
+# istemci anahtarlari zaten uygulama paketiyle dagitilir, guvenlik Firebase
+# Security Rules ile saglanir.
 
 # Flutter plugins
 .flutter-plugins

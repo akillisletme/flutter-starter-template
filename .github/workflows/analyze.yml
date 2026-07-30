@@ -1,0 +1,46 @@
+name: Analyze
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - run: flutter --version
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      # Uretilen dosyalar repo'da tutulmuyor; analiz oncesi uretilmeli.
+      - name: Code generation
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      - name: Localization keys
+        run: |
+          dart run easy_localization:generate \
+            -S assets/translations \
+            -O lib/product/init/language \
+            -o locale_keys.g.dart \
+            -f keys \
+            -s en.json
+
+      - name: Format check
+        run: dart format --output=none --set-exit-if-changed .
+
+      - name: Analyze
+        run: flutter analyze
+
+      - name: Test
+        run: flutter test
