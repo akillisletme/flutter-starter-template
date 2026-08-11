@@ -1,11 +1,11 @@
-import 'package:akillisletme/feature/login_process/auth/email_verification_view.dart';
-import 'package:akillisletme/feature/login_process/auth/forgot_password_view.dart';
-import 'package:akillisletme/feature/login_process/auth/login_view.dart';
-import 'package:akillisletme/feature/login_process/auth/register_view.dart';
 import 'package:akillisletme/feature/home/android_modules/android_modules_view.dart';
 import 'package:akillisletme/feature/home/cupertino_widgets/cupertino_widgets_view.dart';
 import 'package:akillisletme/feature/home/home_view.dart';
 import 'package:akillisletme/feature/home/material_widgets/material_widgets_view.dart';
+import 'package:akillisletme/feature/login_process/auth/email_verification_view.dart';
+import 'package:akillisletme/feature/login_process/auth/forgot_password_view.dart';
+import 'package:akillisletme/feature/login_process/auth/login_view.dart';
+import 'package:akillisletme/feature/login_process/auth/register_view.dart';
 import 'package:akillisletme/feature/login_process/onboarding/onboarding_view.dart';
 import 'package:akillisletme/feature/login_process/splash/splash_view.dart';
 import 'package:akillisletme/feature/login_process/splash/state/splash_cubit.dart';
