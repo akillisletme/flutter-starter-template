@@ -20,7 +20,7 @@ dependencies:
 
   # Cache / Storage
   hive_ce: ^2.11.3
-  path_provider: ^2.1.5
+  path_provider: ^2.1.6
   shared_preferences: ^2.5.4
 
   # Localization
