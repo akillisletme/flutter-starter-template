@@ -51,7 +51,7 @@ dependencies:
   # v7 KIRICI surumdur: `signIn()` kaldirildi, once `initialize()` sonra
   # `authenticate()` cagrilir. Internetteki v6 ornekleri calismaz.
   google_sign_in: ^7.2.0
-  sign_in_with_apple: ^7.0.1
+  sign_in_with_apple: ^8.1.0
   crypto: ^3.0.7
 
   # UI / Widget
