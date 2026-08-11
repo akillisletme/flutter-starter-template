@@ -35,6 +35,8 @@ jobs:
             -o locale_keys.g.dart \
             -f keys \
             -s en.json
+          # Uretilen dosya dart format'a uymuyor; format check'ten once duzelt.
+          dart format lib/product/init/language/locale_keys.g.dart
 
       - name: Format check
         run: dart format --output=none --set-exit-if-changed .
