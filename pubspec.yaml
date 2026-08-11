@@ -65,7 +65,7 @@ dependencies:
   vector_graphics: ^1.1.15
 
   # Odeme / abonelik (RevenueCat) — Firebase'den bagimsiz calisir.
-  purchases_flutter: ^9.6.1
+  purchases_flutter: ^10.8.0
 
   # Permission
   permission_handler: ^11.3.1
