@@ -62,7 +62,7 @@ dependencies:
   lottie: ^3.3.2
   shimmer: ^3.0.0
   smooth_page_indicator: ^1.2.1
-  vector_graphics: ^1.1.15
+  vector_graphics: ^1.2.3
 
   # Odeme / abonelik (RevenueCat) — Firebase'den bagimsiz calisir.
   purchases_flutter: ^10.8.0
