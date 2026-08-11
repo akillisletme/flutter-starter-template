@@ -1,0 +1,4 @@
+# pubspec.yaml assets/songs/ klasorunu bildiriyor. Git bos klasor tutmadigi
+# icin bu dosya olmadan taze klonda klasor olusmaz ve flutter analyze
+# asset_directory_does_not_exist uyarisi verip CI'i dusurur.
+# Ses dosyalarini bu klasore ekleyin.

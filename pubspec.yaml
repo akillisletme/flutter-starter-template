@@ -134,6 +134,10 @@ flutter:
 
 flutter_gen:
   output: lib/product/generated/
+  assets:
+    exclude:
+      # Klasoru git'te tutan yer tutucular; asset accessor'i uretilmesin.
+      - assets/**/.gitkeep
   integrations:
     lottie: true
     flutter_svg: true
