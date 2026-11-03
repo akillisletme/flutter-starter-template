@@ -85,7 +85,7 @@ dev_dependencies:
   flutter_gen_runner: ^5.10.0
   freezed: ^3.0.0
   go_router_builder: ^4.2.0
-  hive_ce_generator: ^1.10.0
+  hive_ce_generator: ^1.11.2
   json_serializable: ^6.6.1
 
   # Lint
