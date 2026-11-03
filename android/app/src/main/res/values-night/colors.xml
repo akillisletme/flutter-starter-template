@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Karanlık modda splash arka planı #000000 → ikon beyaz olmalı. -->
+    <color name="splash_icon">#FFFFFF</color>
+</resources>

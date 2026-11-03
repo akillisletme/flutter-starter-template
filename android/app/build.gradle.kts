@@ -11,6 +11,8 @@ android {
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
+        // flutter_local_notifications ^22 core library desugaring istiyor.
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
@@ -45,4 +47,6 @@ flutter {
 
 dependencies {
     implementation("androidx.core:core-splashscreen:1.0.1")
+    // isCoreLibraryDesugaringEnabled ile birlikte zorunlu.
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
 }

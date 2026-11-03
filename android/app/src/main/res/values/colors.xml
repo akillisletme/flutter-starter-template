@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Splash ikonunun rengi. Karanlık modda values-night/colors.xml devreye
+         girer; sabit #000 bırakılırsa ikon siyah zeminde görünmez. -->
+    <color name="splash_icon">#000000</color>
+</resources>

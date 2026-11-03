@@ -1,6 +1,11 @@
 package com.cleanstart.akillisletme
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.os.Bundle
+import android.view.View
+import android.view.animation.AccelerateInterpolator
+import android.view.animation.AnticipateInterpolator
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName
@@ -17,9 +22,62 @@ import io.flutter.plugin.common.MethodChannel
 
 class MainActivity : FlutterActivity() {
 
+    /// Flutter ilk karesini çizene kadar splash ekranda tutulur; böylece
+    /// sistem splash'i ile uygulama arasında boş/siyah kare olmaz.
+    private var flutterReady = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen()
+        val splash = installSplashScreen()
+        splash.setKeepOnScreenCondition { !flutterReady }
+        splash.setOnExitAnimationListener { provider -> animateSplashExit(provider) }
         super.onCreate(savedInstanceState)
+    }
+
+    /// Splash çıkış animasyonu.
+    ///
+    /// **Neden burada:** `windowSplashScreenAnimatedIcon` (AVD) ile çizilen ikon
+    /// 192dp'lik dairesel maskenin içinde kalır ve ortadan oynatılamaz. Buradaki
+    /// `iconView` ise gerçek bir View — maske yok, tam ekran serbest. Gmail'deki
+    /// "ikon uygulamaya dönüşüyor" hissi bu adımdan geliyor.
+    ///
+    /// ⚠️ `provider.remove()` çağrılmazsa splash ekranda TAKILI KALIR.
+    private fun animateSplashExit(provider: androidx.core.splashscreen.SplashScreenViewProvider) {
+        val icon = provider.iconView
+        val root = provider.view
+
+        // İkon önce hafif küçülüp sonra büyüyerek "içeri çekiliyor" hissi verir
+        // (AnticipateInterpolator), aynı anda zemin siliniyor.
+        val scaleX = ObjectAnimator.ofFloat(icon, View.SCALE_X, 1f, 0.75f, 1.6f)
+        val scaleY = ObjectAnimator.ofFloat(icon, View.SCALE_Y, 1f, 0.75f, 1.6f)
+        val iconFade = ObjectAnimator.ofFloat(icon, View.ALPHA, 1f, 1f, 0f)
+        val rootFade = ObjectAnimator.ofFloat(root, View.ALPHA, 1f, 0f)
+
+        scaleX.interpolator = AnticipateInterpolator(1.4f)
+        scaleY.interpolator = AnticipateInterpolator(1.4f)
+        iconFade.interpolator = AccelerateInterpolator()
+        rootFade.interpolator = AccelerateInterpolator()
+
+        AnimatorSet().apply {
+            duration = 420L
+            playTogether(scaleX, scaleY, iconFade, rootFade)
+            doOnEndCompat { provider.remove() }
+            start()
+        }
+    }
+
+    /// `AnimatorSet` için sade bitiş kancası — androidx-ktx bağımlılığı eklemeden.
+    private fun AnimatorSet.doOnEndCompat(action: () -> Unit) {
+        addListener(
+            object : android.animation.AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: android.animation.Animator) = action()
+            },
+        )
+    }
+
+    override fun onFlutterUiDisplayed() {
+        super.onFlutterUiDisplayed()
+        // İlk kare çizildi → splash bekleme koşulu düşer, çıkış animasyonu başlar.
+        flutterReady = true
     }
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {

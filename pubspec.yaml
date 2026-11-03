@@ -58,7 +58,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   dynamic_color: ^1.7.0
   flutter_svg: ^2.0.17
-  font_awesome_flutter: ^10.12.0
+  font_awesome_flutter: ^11.0.0
   lottie: ^3.3.2
   shimmer: ^3.0.0
   smooth_page_indicator: ^1.2.1

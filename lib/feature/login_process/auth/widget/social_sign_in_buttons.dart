@@ -49,7 +49,7 @@ class SocialSignInButtons extends StatelessWidget {
         if (AppConfig.enableGoogleSignIn)
           AppSecondaryButton(
             label: LocaleKeys.auth_continueWithGoogle.tr(),
-            icon: FontAwesomeIcons.google,
+            icon: FontAwesomeIcons.google.data,
             onPressed: isBusy
                 ? null
                 : () async => onResult(await cubit.signInWithGoogle()),
@@ -57,7 +57,7 @@ class SocialSignInButtons extends StatelessWidget {
         if (_showApple)
           AppSecondaryButton(
             label: LocaleKeys.auth_continueWithApple.tr(),
-            icon: FontAwesomeIcons.apple,
+            icon: FontAwesomeIcons.apple.data,
             onPressed: isBusy
                 ? null
                 : () async => onResult(await cubit.signInWithApple()),
